@@ -30,7 +30,7 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	private static final Logger logger = LogManager.getLogger(ProductoApiRestController.class);
 	
 	@Autowired
-	private SuperHeroeServicio superHeroeServicio;
+	private SuperHeroeServicio productoServicio;
 
 	/**
 	 * Metodo para Obtener una lista con información
@@ -42,11 +42,11 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 		logger.info("Iniciando Consulta de Todos los Súper Héroes");
 		//logger.debug("@CLAIMS");
 		
-		EntidadRespuesta<List<ProductoModel>> listaSuperHeroes=superHeroeServicio.consultarTodos();
+		EntidadRespuesta<List<ProductoModel>> listaProducto= productoServicio.consultarTodos();
 		
 		logger.info("Fin Consulta de Todos de los Súper Héroes");
-		logger.debug(listaSuperHeroes.toString());
-		return listaSuperHeroes;		
+		logger.debug(listaProducto.toString());
+		return listaProducto;
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	 * */
 	@Override
 	public EntidadRespuesta<ProductoModel> crear(@RequestBody SuperHeroeSolicitud superHeroeSolicitud, HttpServletResponse respuesta) {
-		return superHeroeServicio.crear(superHeroeSolicitud);
+		return productoServicio.crear(superHeroeSolicitud);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 		logger.info("Iniciando Actualización de Súper Héroe");
 		logger.debug(superHeroeSolicitud.toString());
 
-		EntidadRespuesta<ProductoModel> resultado=superHeroeServicio.modificar(superHeroeSolicitud);
+		EntidadRespuesta<ProductoModel> resultado= productoServicio.modificar(superHeroeSolicitud);
 		respuesta.setStatus(resultado.getEstatus());
 
 		logger.info("Fin Actualización de Súper Héroe");
@@ -84,7 +84,7 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 		logger.info("Iniciando Eliminación de  Súper Héroe");
 		logger.debug(String.format("identificacion: %s", identificacion));
 
-		EntidadRespuesta<ProductoModel> resultado=superHeroeServicio.eliminar(identificacion);
+		EntidadRespuesta<ProductoModel> resultado= productoServicio.eliminar(identificacion);
 		respuesta.setStatus(resultado.getEstatus());
 
 		logger.info("Fin Eliminación de Súper Héroe");

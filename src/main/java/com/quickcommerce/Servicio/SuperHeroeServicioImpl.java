@@ -33,7 +33,7 @@ public class SuperHeroeServicioImpl implements SuperHeroeServicio {
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<List<ProductoModel>>(
 				HttpServletResponse.SC_OK,
-				"Total Súper Héroes encontrados "+ listaResultado.size(), 
+				"Total de Productos encontrados "+ listaResultado.size(),
 				listaResultado, Tiempo.obtener());
 	}
 
