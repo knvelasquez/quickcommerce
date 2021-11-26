@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "448ede0d-2086-4f36-b910-c668280e40f4",
-		"name": "es.w2m",
+		"name": "com.quickcommerce",
 		"description": "Api en Spring Boot que permita hacer mantenimiento de súper heroes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -54,12 +54,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/w2m/usuario",
+					"raw": "{{host}}/quickcommerce/usuario",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"w2m",
+						"quickcommerce",
 						"usuario"
 					]
 				},
@@ -83,12 +83,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/w2m/superheroe",
+					"raw": "{{host}}/quickcommerce/superheroe",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"w2m",
+						"quickcommerce",
 						"superheroe"
 					]
 				},
@@ -121,12 +121,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/w2m/superheroe",
+					"raw": "{{host}}/quickcommerce/superheroe",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"w2m",
+						"quickcommerce",
 						"superheroe"
 					]
 				}
@@ -149,12 +149,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/w2m/superheroe/:identificacion",
+					"raw": "{{host}}/quickcommerce/superheroe/:identificacion",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"w2m",
+						"quickcommerce",
 						"superheroe",
 						":identificacion"
 					],
@@ -185,12 +185,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/w2m/superheroe/nombre/:nombre",
+					"raw": "{{host}}/quickcommerce/superheroe/nombre/:nombre",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"w2m",
+						"quickcommerce",
 						"superheroe",
 						"nombre",
 						":nombre"
@@ -231,12 +231,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/w2m/superheroe",
+					"raw": "{{host}}/quickcommerce/superheroe",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"w2m",
+						"quickcommerce",
 						"superheroe"
 					]
 				},
@@ -260,12 +260,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/w2m/superheroe/:identificacion",
+					"raw": "{{host}}/quickcommerce/superheroe/:identificacion",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"w2m",
+						"quickcommerce",
 						"superheroe",
 						":identificacion"
 					],

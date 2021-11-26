@@ -12,11 +12,11 @@
     </Appenders>
     <Loggers>      
     
-    	<Logger name="es.w2m.SuperHeroeMantenimiento.ApiRestController" level="DEBUG">
+    	<Logger name="com.quickcommerce.ApiRestController" level="DEBUG">
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
         
-        <Logger name="es.w2m.SuperHeroeMantenimiento.Servicio" level="INFO">
+        <Logger name="com.quickcommerce.Servicio" level="INFO">
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
           
