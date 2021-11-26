@@ -9,25 +9,10 @@ import com.google.gson.GsonBuilder;
  * @author Kevin Velásquez
  *
  */
-public class ProductoSolicitud {
-	private int id;
+public class PostProductoSolicitud {
 	private String nombre;
 	private String descripcion;
 	private int cantidad;
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the nombre

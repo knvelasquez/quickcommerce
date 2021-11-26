@@ -4,7 +4,7 @@
 package com.quickcommerce.ApiRestController;
 
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Solicitud.ProductoSolicitud;
+import com.quickcommerce.Solicitud.PostProductoSolicitud;
 import com.quickcommerce.model.ProductoModel;
 import com.sun.istack.NotNull;
 import io.swagger.annotations.ApiOperation;
@@ -29,22 +29,22 @@ public interface ProductoApiRestController {
 	 */
 	@ApiOperation(value = "Este método es usado para Obtener una lista con información de todos los Productos de una compra en la web.")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_CONSULTARTODOS')")
-	@RequestMapping(value="producto",method = RequestMethod.GET)
+	@RequestMapping(value="products",method = RequestMethod.GET)
 	public EntidadRespuesta<List<ProductoModel>> consultarTodos();
 
 	@ApiOperation(value = "Este método es usado para Agregar un nuevo Producto a la lista de una compra en la web.")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_CONSULTARTODOS')")
-	@RequestMapping(value="producto",method = RequestMethod.POST)
-	public EntidadRespuesta<ProductoModel> crear(@RequestBody ProductoSolicitud productoSolicitud, HttpServletResponse respuesta);
+	@RequestMapping(value="products",method = RequestMethod.POST)
+	public EntidadRespuesta<ProductoModel> crear(@RequestBody PostProductoSolicitud postProductoSolicitud, HttpServletResponse respuesta);
 
 	@ApiOperation(value = "Este método es usado para Actualizar un Producto de la lista de una compra en la web-")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_MODIFICAR')")
-	@RequestMapping(value="producto",method = RequestMethod.PUT)
-	public EntidadRespuesta<ProductoModel> actualizar(@RequestBody ProductoSolicitud productoSolicitud, HttpServletResponse respuesta);
+	@RequestMapping(value="products",method = RequestMethod.PUT)
+	public EntidadRespuesta<ProductoModel> actualizar(@RequestBody PostProductoSolicitud postProductoSolicitud, HttpServletResponse respuesta);
 
 	@ApiOperation(value = "Este método es usado para Eliminar un Producto de la lista de una compra en la web.")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_ELIMINAR')")
-	@RequestMapping(value="producto/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="products/{id}",method = RequestMethod.DELETE)
 	public EntidadRespuesta<ProductoModel> eliminar(@PathVariable @NotNull int id,HttpServletResponse respuesta);
 
 	/*@ApiOperation(value = "Este método es usado para Obtener información de cada Súper Héroe indicado por medio de un Id.")

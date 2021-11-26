@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.quickcommerce.AnotacionPersonalizada.TotalTiempoEjecucion;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
 import com.quickcommerce.Servicio.ProductoServicio;
-import com.quickcommerce.Solicitud.ProductoSolicitud;
+import com.quickcommerce.Solicitud.PostProductoSolicitud;
 import com.quickcommerce.model.ProductoModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +24,7 @@ import io.swagger.annotations.Api;
  */
 @RestController
 @RequestMapping("/quickcommerce")
-@Api(tags = "Producto")
+@Api(tags = "Products")
 public class ProductoApiRestControllerImpl implements ProductoApiRestController {
 
 	private static final Logger logger = LogManager.getLogger(ProductoApiRestController.class);
@@ -53,8 +53,8 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	 * Metodo para Crear un producto en la lista.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> crear(@RequestBody ProductoSolicitud productoSolicitud, HttpServletResponse respuesta) {
-		return productoServicio.crear(productoSolicitud);
+	public EntidadRespuesta<ProductoModel> crear(@RequestBody PostProductoSolicitud postProductoSolicitud, HttpServletResponse respuesta) {
+		return productoServicio.crear(postProductoSolicitud);
 	}
 
 	/**
@@ -62,11 +62,11 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	 * de un producto en una compra web.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> actualizar(ProductoSolicitud productoSolicitud, HttpServletResponse respuesta) {
+	public EntidadRespuesta<ProductoModel> actualizar(PostProductoSolicitud postProductoSolicitud, HttpServletResponse respuesta) {
 		logger.info("Iniciando Actualización de un producto");
-		logger.debug(productoSolicitud.toString());
+		logger.debug(postProductoSolicitud.toString());
 
-		EntidadRespuesta<ProductoModel> resultado= productoServicio.modificar(productoSolicitud);
+		EntidadRespuesta<ProductoModel> resultado= productoServicio.modificar(postProductoSolicitud);
 		respuesta.setStatus(resultado.getEstatus());
 
 		logger.info("Fin Actualización de un producto");

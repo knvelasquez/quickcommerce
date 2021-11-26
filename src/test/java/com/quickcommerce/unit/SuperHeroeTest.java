@@ -17,7 +17,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.quickcommerce.ApiRestController.ProductoApiRestControllerImpl;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Solicitud.ProductoSolicitud;
+import com.quickcommerce.Solicitud.PostProductoSolicitud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -205,8 +205,8 @@ public class SuperHeroeTest {
 	@DisplayName("Actualizar Súper Héroe debería modificar la información de un súper héroe indicado")
 	public void modificarSuperHeroe() {
 		// Arrange
-		ProductoSolicitud superHeroe = new ProductoSolicitud();
-		superHeroe.setId(1);
+		PostProductoSolicitud superHeroe = new PostProductoSolicitud();
+		//superHeroe.setId(1);
 		superHeroe.setNombre("nuevo-nombre");
 		superHeroe.setDescripcion("nueva-identidad");
 

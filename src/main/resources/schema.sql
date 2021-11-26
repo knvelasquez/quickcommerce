@@ -58,5 +58,5 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NOT NULL,
-  `cantidad` INT NOT NULL,
+  `cantidad` INT,
   PRIMARY KEY (`id`));

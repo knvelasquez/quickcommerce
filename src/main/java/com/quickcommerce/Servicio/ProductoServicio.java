@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.quickcommerce.model.ProductoModel;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Solicitud.ProductoSolicitud;
+import com.quickcommerce.Solicitud.PostProductoSolicitud;
 
 /**
  * @author Kevin Velásquez
@@ -37,7 +37,7 @@ public interface ProductoServicio {
 	 * Metodo usado para Actualizar la información
 	 * de un Súper Héroe indicado.
 	 * */
-	public EntidadRespuesta<ProductoModel> modificar(ProductoSolicitud productoSolicitud);
+	public EntidadRespuesta<ProductoModel> modificar(PostProductoSolicitud postProductoSolicitud);
 	
 	/**
 	 * Metodo usado para Eliminar la información
@@ -49,5 +49,5 @@ public interface ProductoServicio {
 	 * Metodo usado para Crear un Súper Héroe
 	 *
 	 */
-	public EntidadRespuesta<ProductoModel> crear(ProductoSolicitud productoSolicitud);
+	public EntidadRespuesta<ProductoModel> crear(PostProductoSolicitud postProductoSolicitud);
 }

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.quickcommerce.Repository.ProductoRepository;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Solicitud.ProductoSolicitud;
+import com.quickcommerce.Solicitud.PostProductoSolicitud;
 
 /**
  * @author Kevin Velásquez
@@ -41,11 +41,11 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * de una compra en la web.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> crear(ProductoSolicitud productoSolicitud) {
+	public EntidadRespuesta<ProductoModel> crear(PostProductoSolicitud postProductoSolicitud) {
 		ProductoModel productoModel=new ProductoModel();
-		productoModel.setNombre(productoSolicitud.getNombre());
-		productoModel.setDescripcion(productoSolicitud.getDescripcion());
-		productoModel.setCantidad(productoSolicitud.getCantidad());
+		productoModel.setNombre(postProductoSolicitud.getNombre());
+		productoModel.setDescripcion(postProductoSolicitud.getDescripcion());
+		productoModel.setCantidad(postProductoSolicitud.getCantidad());
 		productoRepository.save(productoModel);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
@@ -85,28 +85,28 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * de un producto en una comra en la web.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> modificar(ProductoSolicitud productoSolicitud) {
+	public EntidadRespuesta<ProductoModel> modificar(PostProductoSolicitud postProductoSolicitud) {
 		ProductoModel productoModel=null;
 		//Valida si se ha indicado una identificacion para el usuario
-		if(productoSolicitud.getId()==0) {
-			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
-					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
-		}
+		//if(postProductoSolicitud.getId()==0) {
+		//	return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
+		//			"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
+		//}
 		//Obtiene la informacion del producto por medio del id indicado
-		productoModel= productoRepository.findById(productoSolicitud.getId());
+		productoModel= productoRepository.findById(1);
 		if(productoModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}						
 		//Valida que la informacion obtenida para actualizar no sea null
-		if(productoSolicitud.getNombre()!=null) {
-			productoModel.setNombre(productoSolicitud.getNombre());
+		if(postProductoSolicitud.getNombre()!=null) {
+			productoModel.setNombre(postProductoSolicitud.getNombre());
 		}
-		if(productoSolicitud.getDescripcion()!=null) {
-			productoModel.setDescripcion(productoSolicitud.getDescripcion());
+		if(postProductoSolicitud.getDescripcion()!=null) {
+			productoModel.setDescripcion(postProductoSolicitud.getDescripcion());
 		}			
-		if(productoSolicitud.getCantidad()!=0) {
-			productoModel.setCantidad(productoSolicitud.getCantidad());
+		if(postProductoSolicitud.getCantidad()!=0) {
+			productoModel.setCantidad(postProductoSolicitud.getCantidad());
 		}
 
 		//Ejecuta la actualizacion en la base de datos
