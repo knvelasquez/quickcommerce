@@ -5,6 +5,8 @@ package com.quickcommerce.Servicio;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.config.Tiempo;
 import com.quickcommerce.model.ProductoModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,13 +87,13 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * de un producto en una comra en la web.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> modificar(PostProductoSolicitud postProductoSolicitud) {
+	public EntidadRespuesta<ProductoModel> modificar(PutProductoSolicitud productoSolicitud) {
 		ProductoModel productoModel=null;
 		//Valida si se ha indicado una identificacion para el usuario
-		//if(postProductoSolicitud.getId()==0) {
-		//	return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
-		//			"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
-		//}
+		if(productoSolicitud.getId()==0) {
+			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
+					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
+		}
 		//Obtiene la informacion del producto por medio del id indicado
 		productoModel= productoRepository.findById(1);
 		if(productoModel==null) {
@@ -99,14 +101,14 @@ public class ProductoServicioImpl implements ProductoServicio {
 					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}						
 		//Valida que la informacion obtenida para actualizar no sea null
-		if(postProductoSolicitud.getNombre()!=null) {
-			productoModel.setNombre(postProductoSolicitud.getNombre());
+		if(productoSolicitud.getNombre()!=null) {
+			productoModel.setNombre(productoSolicitud.getNombre());
 		}
-		if(postProductoSolicitud.getDescripcion()!=null) {
-			productoModel.setDescripcion(postProductoSolicitud.getDescripcion());
+		if(productoSolicitud.getDescripcion()!=null) {
+			productoModel.setDescripcion(productoSolicitud.getDescripcion());
 		}			
-		if(postProductoSolicitud.getCantidad()!=0) {
-			productoModel.setCantidad(postProductoSolicitud.getCantidad());
+		if(productoSolicitud.getCantidad()!=0) {
+			productoModel.setCantidad(productoSolicitud.getCantidad());
 		}
 
 		//Ejecuta la actualizacion en la base de datos

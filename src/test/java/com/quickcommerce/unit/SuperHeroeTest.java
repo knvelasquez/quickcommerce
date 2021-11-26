@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.config.Tiempo;
 import com.quickcommerce.model.ProductoModel;
 import org.junit.jupiter.api.AfterAll;
@@ -205,16 +206,16 @@ public class SuperHeroeTest {
 	@DisplayName("Actualizar Súper Héroe debería modificar la información de un súper héroe indicado")
 	public void modificarSuperHeroe() {
 		// Arrange
-		PostProductoSolicitud superHeroe = new PostProductoSolicitud();
+		PutProductoSolicitud prodcuto = new PutProductoSolicitud();
 		//superHeroe.setId(1);
-		superHeroe.setNombre("nuevo-nombre");
-		superHeroe.setDescripcion("nueva-identidad");
+		prodcuto.setNombre("nuevo-nombre");
+		prodcuto.setDescripcion("nueva-identidad");
 
 		EntidadRespuesta<ProductoModel>entidadRespuesta=new EntidadRespuesta<ProductoModel>(201,null,null,Tiempo.obtener());
-		when(superHeroeApi.actualizar(superHeroe,respuesta)).thenReturn(entidadRespuesta);
+		when(superHeroeApi.actualizar(prodcuto,respuesta)).thenReturn(entidadRespuesta);
 		// Act
 
-		EntidadRespuesta<ProductoModel> entidadResultado = superHeroeApi.actualizar(superHeroe,respuesta);
+		EntidadRespuesta<ProductoModel> entidadResultado = superHeroeApi.actualizar(prodcuto,respuesta);
 		// Assert
 		assertEquals(201, entidadResultado.getEstatus());
 	}

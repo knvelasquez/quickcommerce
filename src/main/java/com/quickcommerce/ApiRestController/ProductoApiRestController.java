@@ -5,6 +5,7 @@ package com.quickcommerce.ApiRestController;
 
 import com.quickcommerce.Respuesta.EntidadRespuesta;
 import com.quickcommerce.Solicitud.PostProductoSolicitud;
+import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.model.ProductoModel;
 import com.sun.istack.NotNull;
 import io.swagger.annotations.ApiOperation;
@@ -40,7 +41,7 @@ public interface ProductoApiRestController {
 	@ApiOperation(value = "Este método es usado para Actualizar un Producto de la lista de una compra en la web-")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_MODIFICAR')")
 	@RequestMapping(value="products",method = RequestMethod.PUT)
-	public EntidadRespuesta<ProductoModel> actualizar(@RequestBody PostProductoSolicitud postProductoSolicitud, HttpServletResponse respuesta);
+	public EntidadRespuesta<ProductoModel> actualizar(@RequestBody PutProductoSolicitud postProductoSolicitud, HttpServletResponse respuesta);
 
 	@ApiOperation(value = "Este método es usado para Eliminar un Producto de la lista de una compra en la web.")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_ELIMINAR')")

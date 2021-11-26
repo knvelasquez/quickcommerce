@@ -5,6 +5,7 @@ package com.quickcommerce.Servicio;
 
 import java.util.List;
 
+import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.model.ProductoModel;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
 import com.quickcommerce.Solicitud.PostProductoSolicitud;
@@ -37,7 +38,7 @@ public interface ProductoServicio {
 	 * Metodo usado para Actualizar la información
 	 * de un Súper Héroe indicado.
 	 * */
-	public EntidadRespuesta<ProductoModel> modificar(PostProductoSolicitud postProductoSolicitud);
+	public EntidadRespuesta<ProductoModel> modificar(PutProductoSolicitud productoSolicitud);
 	
 	/**
 	 * Metodo usado para Eliminar la información
