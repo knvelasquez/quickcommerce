@@ -5,25 +5,25 @@ package com.quickcommerce.Repository;
 
 import java.util.List;
 
-import com.quickcommerce.model.SuperHeroeModel;
+import com.quickcommerce.model.ProductoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Kevin Velásquez
  *
  */
-public interface SuperHeroeRepository extends JpaRepository<SuperHeroeModel,Long>{
+public interface SuperHeroeRepository extends JpaRepository<ProductoModel,Long>{
 
 	/**
 	 * 
 	 * 
 	 * */
-	SuperHeroeModel findById(int id);
+	ProductoModel findById(int id);
 	
 	/**
 	 * 
 	 * 
 	 * */
-	List<SuperHeroeModel> findByNombreContainingIgnoreCase(String nombre);
+	List<ProductoModel> findByNombreContainingIgnoreCase(String nombre);
 	
 }

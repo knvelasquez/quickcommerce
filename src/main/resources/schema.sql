@@ -52,15 +52,11 @@ CREATE TABLE IF NOT EXISTS `usuario_privilegio` (
    CREATE INDEX `fk_usuario_privilegio_privilegio1_idx` ON `usuario_privilegio` (`privilegio_idprivilegio`);
 
 -- -----------------------------------------------------
--- Tabla `super_heroe`
+-- Tabla `producto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `super_heroe` (
+CREATE TABLE IF NOT EXISTS `producto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `identidad_secreta` VARCHAR(45) NOT NULL,
-  `logo` VARCHAR(45) NULL,
-  `color` VARCHAR(45) NULL,
-  `lugar_residencia` VARCHAR(45) NULL,
-  `super_poder` VARCHAR(45) NULL,
-  `archi_enemigo` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `cantidad` INT NOT NULL,
   PRIMARY KEY (`id`));

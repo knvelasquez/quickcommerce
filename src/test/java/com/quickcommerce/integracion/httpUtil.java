@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import com.quickcommerce.model.SuperHeroeModel;
+import com.quickcommerce.model.ProductoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -31,8 +31,8 @@ public class httpUtil {
 	public enum http { GET, POST, PUT, DELETE,PATCH,OPTION}
 	
 	TypeToken<EntidadRespuesta<String>> mapTipoString = new TypeToken<EntidadRespuesta<String>>() {};
-	TypeToken<EntidadRespuesta<List<SuperHeroeModel>>> mapTipoListaSuperHeroeModel=new TypeToken<EntidadRespuesta<List<SuperHeroeModel>>>() {};
-	TypeToken<EntidadRespuesta<SuperHeroeModel>> mapTipoSuperHeroeModel=new TypeToken<EntidadRespuesta<SuperHeroeModel>>() {};
+	TypeToken<EntidadRespuesta<List<ProductoModel>>> mapTipoListaSuperHeroeModel=new TypeToken<EntidadRespuesta<List<ProductoModel>>>() {};
+	TypeToken<EntidadRespuesta<ProductoModel>> mapTipoSuperHeroeModel=new TypeToken<EntidadRespuesta<ProductoModel>>() {};
 	
 	String urlUsuario ="/quickcommerce/usuario";
 	String urlSuperHeroe = "/quickcommerce/superheroe";

@@ -52,10 +52,10 @@ INSERT INTO `usuario_privilegio` VALUES(7,4);
 INSERT INTO `usuario_privilegio` VALUES(7,5);
 INSERT INTO `usuario_privilegio` VALUES(7,6);
 
-INSERT INTO `super_heroe` VALUES(NULL,'Bat Man','Bruce Wayne','Murcielago','Negro','Ciudad Gotica','SuperIntelecto','El Guason');
-INSERT INTO `super_heroe` VALUES(NULL,'Super Man','Clark Kent','S','Azul','Metrópolis','Super Fuerza','Lex Luthor');
-INSERT INTO `super_heroe` VALUES(NULL,'Spider Man','Peter Parker','Araña','Rojo','Ciudad De Nueva York','Telaraña','Duende Verde');
-INSERT INTO `super_heroe` VALUES(NULL,'Iron Man','Tony Stark','Robot','Rojo','Mansión Stark','Volar','Ultrón');
-INSERT INTO `super_heroe` VALUES(NULL,'Capitan America','Steven Rogers','Estrella','Azul','Ciudad De Nueva York','SuperSoldado','Hydra');
-INSERT INTO `super_heroe` VALUES(NULL,'Thor','Dios del Trueno','Martillo','Dorado','Asgard','CombateArmado','Loki');
-INSERT INTO `super_heroe` VALUES(NULL,'Hulk','Bruce Banner','Puño','Verde','Sakaar','SuperFuerza','Graviton');
+--INSERT INTO `super_heroe` VALUES(NULL,'Bat Man','Bruce Wayne','Murcielago','Negro','Ciudad Gotica','SuperIntelecto','El Guason');
+--INSERT INTO `super_heroe` VALUES(NULL,'Super Man','Clark Kent','S','Azul','Metrópolis','Super Fuerza','Lex Luthor');
+--INSERT INTO `super_heroe` VALUES(NULL,'Spider Man','Peter Parker','Araña','Rojo','Ciudad De Nueva York','Telaraña','Duende Verde');
+--INSERT INTO `super_heroe` VALUES(NULL,'Iron Man','Tony Stark','Robot','Rojo','Mansión Stark','Volar','Ultrón');
+--INSERT INTO `super_heroe` VALUES(NULL,'Capitan America','Steven Rogers','Estrella','Azul','Ciudad De Nueva York','SuperSoldado','Hydra');
+--INSERT INTO `super_heroe` VALUES(NULL,'Thor','Dios del Trueno','Martillo','Dorado','Asgard','CombateArmado','Loki');
+--INSERT INTO `super_heroe` VALUES(NULL,'Hulk','Bruce Banner','Puño','Verde','Sakaar','SuperFuerza','Graviton');
