@@ -71,7 +71,7 @@ public class QuickCommerceApp {
 				// No debe establecerse para producción
 				.and()
 				.ignoring()
-				.antMatchers("/h2-console/**/**");
+				.antMatchers("/base-de-datos/**/**");
 		}
 	}
 }

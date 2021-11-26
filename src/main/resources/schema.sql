@@ -3,11 +3,10 @@
 -- Base de Datos maestroh01 ambiente Homologacion 
 -- Base de Datos maestro01  ambiente Produccion 
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `maestrod01` AUTHORIZATION sa;
-CREATE SCHEMA IF NOT EXISTS `maestroh01` AUTHORIZATION sa;
-CREATE SCHEMA IF NOT EXISTS `maestro01`  AUTHORIZATION sa;
+CREATE SCHEMA IF NOT EXISTS `maestrodb` AUTHORIZATION sa;
+CREATE SCHEMA IF NOT EXISTS `maestrodbinte` AUTHORIZATION sa;
 
-USE `maestrod01`;
+USE `maestrodb`;
 
 -- -----------------------------------------------------
 -- Tabla `usuario`
