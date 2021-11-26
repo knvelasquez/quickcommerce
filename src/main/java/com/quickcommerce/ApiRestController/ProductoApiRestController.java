@@ -44,8 +44,8 @@ public interface ProductoApiRestController {
 
 	@ApiOperation(value = "Este método es usado para Eliminar un Producto de la lista de una compra en la web.")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_ELIMINAR')")
-	@RequestMapping(value="producto/{identificacion}",method = RequestMethod.DELETE)
-	public EntidadRespuesta<ProductoModel> eliminar(@PathVariable @NotNull int identificacion,HttpServletResponse respuesta);
+	@RequestMapping(value="producto/{id}",method = RequestMethod.DELETE)
+	public EntidadRespuesta<ProductoModel> eliminar(@PathVariable @NotNull int id,HttpServletResponse respuesta);
 
 	/*@ApiOperation(value = "Este método es usado para Obtener información de cada Súper Héroe indicado por medio de un Id.")
 	@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_CONSULTARPORID')")	

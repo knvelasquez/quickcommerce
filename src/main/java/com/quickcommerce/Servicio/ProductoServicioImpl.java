@@ -122,15 +122,15 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * de un Súper Héroe indicado.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> eliminar(int identificacion) {
-		ProductoModel superHeroeModel= productoRepository.findById(identificacion);
-		if(superHeroeModel==null) {
+	public EntidadRespuesta<ProductoModel> eliminar(int id) {
+		ProductoModel productoModel= productoRepository.findById(id);
+		if(productoModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
-					"Súper Héroe no encontrado",superHeroeModel,Tiempo.obtener());
+					"Produco no encontrado",productoModel,Tiempo.obtener());
 		}	
-		productoRepository.delete(superHeroeModel);
+		productoRepository.delete(productoModel);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
-				"Súper Héroe eliminado correctamente",superHeroeModel,Tiempo.obtener());						
+				"Producto eliminado correctamente",productoModel,Tiempo.obtener());
 	}
 }

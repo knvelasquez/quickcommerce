@@ -77,17 +77,17 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 
 	/**
 	 * Metodo usado para Eliminar la información
-	 * de un Súper Héroe indicado.
+	 * de un Producto en una compra en la web.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> eliminar(int identificacion, HttpServletResponse respuesta) {
-		logger.info("Iniciando Eliminación de  Súper Héroe");
-		logger.debug(String.format("identificacion: %s", identificacion));
+	public EntidadRespuesta<ProductoModel> eliminar(int id, HttpServletResponse respuesta) {
+		logger.info("Iniciando Eliminación de un producto");
+		logger.debug(String.format("id: %s", id));
 
-		EntidadRespuesta<ProductoModel> resultado= productoServicio.eliminar(identificacion);
+		EntidadRespuesta<ProductoModel> resultado= productoServicio.eliminar(id);
 		respuesta.setStatus(resultado.getEstatus());
 
-		logger.info("Fin Eliminación de Súper Héroe");
+		logger.info("Fin Eliminación de un producto");
 		logger.debug(resultado.toString());
 		return resultado;
 	}
