@@ -3,7 +3,7 @@
  */
 package com.quickcommerce.unit;
 
-import com.quickcommerce.Servicio.SuperHeroeServicioImpl;
+import com.quickcommerce.Servicio.ProductoServicioImpl;
 import com.quickcommerce.Servicio.UsuarioServicioImpl;
 import com.quickcommerce.config.Tiempo;
 import org.junit.jupiter.api.AfterAll;
@@ -46,7 +46,7 @@ public class UsuarioTest{
 	private UsuarioServicioImpl usuarioServicio;
 	
 	@InjectMocks
-	private SuperHeroeServicioImpl superHeroeServicio;
+	private ProductoServicioImpl superHeroeServicio;
 
 	//@Autowired
 	//private UsuarioRepository usuarioRepository;	

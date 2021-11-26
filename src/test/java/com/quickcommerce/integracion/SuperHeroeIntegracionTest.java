@@ -18,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Solicitud.SuperHeroeSolicitud;
+import com.quickcommerce.Solicitud.ProductoSolicitud;
 import com.quickcommerce.Solicitud.UsuarioSolicitud;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -189,11 +189,11 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 	@DisplayName("Actualizar Súper Héroe con autenticación y privilegios de acceso debería procesar correctamente")
 	public void actualizaSuperHeroeDeberiProcesarCorrectamente() throws UnsupportedEncodingException, Exception {
 		//Arrange
-		SuperHeroeSolicitud superHeroeSolicitud=new SuperHeroeSolicitud();
+		ProductoSolicitud productoSolicitud =new ProductoSolicitud();
 		//Indicar la identificaciones obligatorio
-		superHeroeSolicitud.setIdentificacion(2);
-		superHeroeSolicitud.setColor("blanco");
-		superHeroeSolicitud.setNombre("NuevoSuperHeroe");
+		productoSolicitud.setId(2);
+		//productoSolicitud.setColor("blanco");
+		productoSolicitud.setNombre("NuevoSuperHeroe");
 		
 		//Act
 		//1era integración autenticación resultado
@@ -201,7 +201,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 		String jwtToken=autenticar(ucmMock);
 		
 		//2da integracion modificacion resultado
-		EntidadRespuesta<ProductoModel>superHeroeResultado=mvc(http.PUT, urlSuperHeroe,jwtToken,superHeroeSolicitud,mapTipoSuperHeroeModel);
+		EntidadRespuesta<ProductoModel>superHeroeResultado=mvc(http.PUT, urlSuperHeroe,jwtToken, productoSolicitud,mapTipoSuperHeroeModel);
 		
 		//Assert
 		assertEquals(202, superHeroeResultado.getEstatus());
@@ -217,11 +217,11 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 	@DisplayName("Actualizar Súper Héroe con autenticación fallida o sin privilegio debería obtener error de acceso")
 	public void actualizaSuperHeroeDeberiaObtenerErrorAcceso() throws UnsupportedEncodingException, Exception {
 		//Arrange
-		SuperHeroeSolicitud superHeroeSolicitud=new SuperHeroeSolicitud();
+		ProductoSolicitud productoSolicitud =new ProductoSolicitud();
 		//Indicar la identificaciones obligatorio
-		superHeroeSolicitud.setIdentificacion(2);
-		superHeroeSolicitud.setColor("nuevoColor");
-		superHeroeSolicitud.setNombre("NuevoSuperHeroe");
+		productoSolicitud.setId(2);
+		//productoSolicitud.setColor("nuevoColor");
+		productoSolicitud.setNombre("NuevoSuperHeroe");
 		
 		//Act
 		//1era integración autenticación resultado
@@ -229,7 +229,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 		String jwtToken=autenticar(uscMock);
 		
 		//2da integracion modificacion resultado
-		EntidadRespuesta<ProductoModel>superHeroeResultado=mvc(http.PUT, urlSuperHeroe,jwtToken,superHeroeSolicitud,mapTipoSuperHeroeModel);
+		EntidadRespuesta<ProductoModel>superHeroeResultado=mvc(http.PUT, urlSuperHeroe,jwtToken, productoSolicitud,mapTipoSuperHeroeModel);
 		
 		//Assert
 		assertEquals(401, superHeroeResultado.getEstatus());

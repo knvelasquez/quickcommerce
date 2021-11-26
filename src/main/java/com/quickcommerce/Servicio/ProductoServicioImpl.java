@@ -5,36 +5,51 @@ package com.quickcommerce.Servicio;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
 import com.quickcommerce.config.Tiempo;
 import com.quickcommerce.model.ProductoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.quickcommerce.Repository.SuperHeroeRepository;
+import com.quickcommerce.Repository.ProductoRepository;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Solicitud.SuperHeroeSolicitud;
+import com.quickcommerce.Solicitud.ProductoSolicitud;
 
 /**
  * @author Kevin Velásquez
  */
 @Service
-public class SuperHeroeServicioImpl implements SuperHeroeServicio {
+public class ProductoServicioImpl implements ProductoServicio {
 
 	@Autowired
-	private SuperHeroeRepository superHeroeRepository;
+	private ProductoRepository productoRepository;
 
 	/**
 	 * Metodo para Obtener una lista con información
-	 * de todos los Súper Héroes encontrados.
+	 * de todos los Productos de una compra en la web.
 	 * */
 	@Override
 	public EntidadRespuesta<List<ProductoModel>> consultarTodos() {
-		List<ProductoModel> listaResultado=superHeroeRepository.findAll();
+		List<ProductoModel> listaResultado= productoRepository.findAll();
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<List<ProductoModel>>(
 				HttpServletResponse.SC_OK,
 				"Total de Productos encontrados "+ listaResultado.size(),
 				listaResultado, Tiempo.obtener());
+	}
+
+	/**
+	 * Metodo para Agregar un nuevo Producto a la lista
+	 * de una compra en la web.
+	 * */
+	@Override
+	public EntidadRespuesta<ProductoModel> crear(ProductoSolicitud productoSolicitud) {
+		ProductoModel productoModel=new ProductoModel();
+		productoModel.setNombre(productoSolicitud.getNombre());
+		productoModel.setDescripcion(productoSolicitud.getDescripcion());
+		productoModel.setCantidad(productoSolicitud.getCantidad());
+		productoRepository.save(productoModel);
+		//Envia la entidad respuesta
+		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
+				"El producto ha sido agregado correctamente",productoModel,Tiempo.obtener());
 	}
 
 	/**
@@ -47,7 +62,7 @@ public class SuperHeroeServicioImpl implements SuperHeroeServicio {
 		return new EntidadRespuesta<ProductoModel>(
 				HttpServletResponse.SC_OK,
 				"Súper Héroe encontrado", 
-				superHeroeRepository.findById(id),Tiempo.obtener());				
+				productoRepository.findById(id),Tiempo.obtener());
 	}
 
 	/**
@@ -57,7 +72,7 @@ public class SuperHeroeServicioImpl implements SuperHeroeServicio {
 	@Override
 	public EntidadRespuesta<List<ProductoModel>> consultarPorNombreContenga(String nombre) {
 		//Obtiene la informacion del servicio
-		List<ProductoModel> listaResultado=superHeroeRepository.findByNombreContainingIgnoreCase(nombre);
+		List<ProductoModel> listaResultado= productoRepository.findByNombreContainingIgnoreCase(nombre);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<List<ProductoModel>>(
 				HttpServletResponse.SC_OK,
@@ -70,43 +85,43 @@ public class SuperHeroeServicioImpl implements SuperHeroeServicio {
 	 * de un Súper Héroe indicado.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> modificar(SuperHeroeSolicitud superHeroeSolicitud) {
+	public EntidadRespuesta<ProductoModel> modificar(ProductoSolicitud productoSolicitud) {
 		ProductoModel superHeroeModel=null;
 		//Valida si se ha indicado una identificacion para el usuario
-		if(superHeroeSolicitud.getIdentificacion()==0) {
+		if(productoSolicitud.getId()==0) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"Súper Héroe no encontrado",superHeroeModel,Tiempo.obtener());
 		}
 		//Obtiene la informacion del super heroe por medio de la identificacion indicada
-		superHeroeModel=superHeroeRepository.findById(superHeroeSolicitud.getIdentificacion()); 
+		superHeroeModel= productoRepository.findById(productoSolicitud.getId());
 		if(superHeroeModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"Súper Héroe no encontrado",superHeroeModel,Tiempo.obtener());
 		}						
 		//Valida que la informacion obtenida para actualizar no sea null
-		if(superHeroeSolicitud.getNombre()!=null) {
-			superHeroeModel.setNombre(superHeroeSolicitud.getNombre());
+		if(productoSolicitud.getNombre()!=null) {
+			superHeroeModel.setNombre(productoSolicitud.getNombre());
 		}
-		if(superHeroeSolicitud.getIdentidadSecreta()!=null) {
-			superHeroeModel.setDescripcion(superHeroeSolicitud.getIdentidadSecreta());
+		if(productoSolicitud.getDescripcion()!=null) {
+			superHeroeModel.setDescripcion(productoSolicitud.getDescripcion());
 		}			
-		if(superHeroeSolicitud.getLugarResidencia()!=null) {
+		//if(productoSolicitud.getCantidad()!=null) {
 			//superHeroeModel.setCantidad(superHeroeSolicitud.getLugarResidencia());
-		}
-		if(superHeroeSolicitud.getSuperPoder()!=null) {
+		//}
+		//if(productoSolicitud.getSuperPoder()!=null) {
 			//superHeroeModel.setSuperPoder(superHeroeSolicitud.getSuperPoder());
-		}
-		if(superHeroeSolicitud.getLogo()!=null) {
+		//}
+		//if(productoSolicitud.getLogo()!=null) {
 			//superHeroeModel.setLogo(superHeroeSolicitud.getLogo());
-		}
-		if(superHeroeSolicitud.getColor()!=null) {
+		//}
+		//if(productoSolicitud.getColor()!=null) {
 			//superHeroeModel.setColor(superHeroeSolicitud.getColor());
-		}			
-		if(superHeroeSolicitud.getArchiEnemigo()!=null) {
+		//}
+		//if(productoSolicitud.getArchiEnemigo()!=null) {
 			//superHeroeModel.setArchiEnemigo(superHeroeSolicitud.getArchiEnemigo());
-		}											
+		//}
 		//Ejecuta la actualizacion en la base de datos
-		superHeroeRepository.save(superHeroeModel);
+		productoRepository.save(superHeroeModel);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
 				"Súper Héroe modificado correctamente",superHeroeModel,Tiempo.obtener());		
@@ -118,30 +133,14 @@ public class SuperHeroeServicioImpl implements SuperHeroeServicio {
 	 * */
 	@Override
 	public EntidadRespuesta<ProductoModel> eliminar(int identificacion) {
-		ProductoModel superHeroeModel=superHeroeRepository.findById(identificacion);
+		ProductoModel superHeroeModel= productoRepository.findById(identificacion);
 		if(superHeroeModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"Súper Héroe no encontrado",superHeroeModel,Tiempo.obtener());
 		}	
-		superHeroeRepository.delete(superHeroeModel);
+		productoRepository.delete(superHeroeModel);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
 				"Súper Héroe eliminado correctamente",superHeroeModel,Tiempo.obtener());						
-	}
-
-	@Override
-	public EntidadRespuesta<ProductoModel> crear(SuperHeroeSolicitud superHeroeSolicitud) {
-		ProductoModel superHeroeModel=new ProductoModel();
-		superHeroeModel.setNombre(superHeroeSolicitud.getNombre());
-		//superHeroeModel.setCantidad(superHeroeSolicitud.getLugarResidencia());
-		//superHeroeModel.setSuperPoder(superHeroeSolicitud.getSuperPoder());
-		//superHeroeModel.setSuperPoder(superHeroeSolicitud.getSuperPoder());
-		//superHeroeModel.setLogo(superHeroeSolicitud.getLogo());
-		//superHeroeModel.setArchiEnemigo(superHeroeSolicitud.getArchiEnemigo());
-		superHeroeModel.setDescripcion(superHeroeSolicitud.getIdentidadSecreta());
-		superHeroeRepository.save(superHeroeModel);
-		//Envia la entidad respuesta
-		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
-				"Súper Héroe creado correctamente",superHeroeModel,Tiempo.obtener());
 	}
 }

@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Kevin Velásquez
  *
  */
-public interface SuperHeroeRepository extends JpaRepository<ProductoModel,Long>{
+public interface ProductoRepository extends JpaRepository<ProductoModel,Long>{
 
 	/**
 	 * 

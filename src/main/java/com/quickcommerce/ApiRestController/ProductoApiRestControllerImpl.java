@@ -7,8 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import com.quickcommerce.AnotacionPersonalizada.TotalTiempoEjecucion;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Servicio.SuperHeroeServicio;
-import com.quickcommerce.Solicitud.SuperHeroeSolicitud;
+import com.quickcommerce.Servicio.ProductoServicio;
+import com.quickcommerce.Solicitud.ProductoSolicitud;
 import com.quickcommerce.model.ProductoModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,31 +30,31 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	private static final Logger logger = LogManager.getLogger(ProductoApiRestController.class);
 	
 	@Autowired
-	private SuperHeroeServicio productoServicio;
+	private ProductoServicio productoServicio;
 
 	/**
 	 * Metodo para Obtener una lista con información
-	 * de todos los Súper Héroes encontrados.
+	 * de todos los Productos encontrados.
 	 * */
 	@TotalTiempoEjecucion
 	@Override
 	public EntidadRespuesta<List<ProductoModel>> consultarTodos() {
-		logger.info("Iniciando Consulta de Todos los Súper Héroes");
+		logger.info("Iniciando Consulta de Todos los productos");
 		//logger.debug("@CLAIMS");
 		
 		EntidadRespuesta<List<ProductoModel>> listaProducto= productoServicio.consultarTodos();
 		
-		logger.info("Fin Consulta de Todos de los Súper Héroes");
+		logger.info("Fin Consulta de Todos de los productos");
 		logger.debug(listaProducto.toString());
 		return listaProducto;
 	}
 
 	/**
-	 * Metodo para Crear un Súper Héroe.
+	 * Metodo para Crear un producto en la lista.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> crear(@RequestBody SuperHeroeSolicitud superHeroeSolicitud, HttpServletResponse respuesta) {
-		return productoServicio.crear(superHeroeSolicitud);
+	public EntidadRespuesta<ProductoModel> crear(@RequestBody ProductoSolicitud productoSolicitud, HttpServletResponse respuesta) {
+		return productoServicio.crear(productoSolicitud);
 	}
 
 	/**
@@ -62,11 +62,11 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	 * de un Súper Héroe indicado.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> actualizar(SuperHeroeSolicitud superHeroeSolicitud, HttpServletResponse respuesta) {
+	public EntidadRespuesta<ProductoModel> actualizar(ProductoSolicitud productoSolicitud, HttpServletResponse respuesta) {
 		logger.info("Iniciando Actualización de Súper Héroe");
-		logger.debug(superHeroeSolicitud.toString());
+		logger.debug(productoSolicitud.toString());
 
-		EntidadRespuesta<ProductoModel> resultado= productoServicio.modificar(superHeroeSolicitud);
+		EntidadRespuesta<ProductoModel> resultado= productoServicio.modificar(productoSolicitud);
 		respuesta.setStatus(resultado.getEstatus());
 
 		logger.info("Fin Actualización de Súper Héroe");
