@@ -82,49 +82,39 @@ public class ProductoServicioImpl implements ProductoServicio {
 
 	/**
 	 * Metodo usado para Actualizar la información
-	 * de un Súper Héroe indicado.
+	 * de un producto en una comra en la web.
 	 * */
 	@Override
 	public EntidadRespuesta<ProductoModel> modificar(ProductoSolicitud productoSolicitud) {
-		ProductoModel superHeroeModel=null;
+		ProductoModel productoModel=null;
 		//Valida si se ha indicado una identificacion para el usuario
 		if(productoSolicitud.getId()==0) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
-					"Súper Héroe no encontrado",superHeroeModel,Tiempo.obtener());
+					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}
-		//Obtiene la informacion del super heroe por medio de la identificacion indicada
-		superHeroeModel= productoRepository.findById(productoSolicitud.getId());
-		if(superHeroeModel==null) {
+		//Obtiene la informacion del producto por medio del id indicado
+		productoModel= productoRepository.findById(productoSolicitud.getId());
+		if(productoModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
-					"Súper Héroe no encontrado",superHeroeModel,Tiempo.obtener());
+					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}						
 		//Valida que la informacion obtenida para actualizar no sea null
 		if(productoSolicitud.getNombre()!=null) {
-			superHeroeModel.setNombre(productoSolicitud.getNombre());
+			productoModel.setNombre(productoSolicitud.getNombre());
 		}
 		if(productoSolicitud.getDescripcion()!=null) {
-			superHeroeModel.setDescripcion(productoSolicitud.getDescripcion());
+			productoModel.setDescripcion(productoSolicitud.getDescripcion());
 		}			
-		//if(productoSolicitud.getCantidad()!=null) {
-			//superHeroeModel.setCantidad(superHeroeSolicitud.getLugarResidencia());
-		//}
-		//if(productoSolicitud.getSuperPoder()!=null) {
-			//superHeroeModel.setSuperPoder(superHeroeSolicitud.getSuperPoder());
-		//}
-		//if(productoSolicitud.getLogo()!=null) {
-			//superHeroeModel.setLogo(superHeroeSolicitud.getLogo());
-		//}
-		//if(productoSolicitud.getColor()!=null) {
-			//superHeroeModel.setColor(superHeroeSolicitud.getColor());
-		//}
-		//if(productoSolicitud.getArchiEnemigo()!=null) {
-			//superHeroeModel.setArchiEnemigo(superHeroeSolicitud.getArchiEnemigo());
-		//}
+		if(productoSolicitud.getCantidad()!=0) {
+			productoModel.setCantidad(productoSolicitud.getCantidad());
+		}
+
 		//Ejecuta la actualizacion en la base de datos
-		productoRepository.save(superHeroeModel);
+		productoRepository.save(productoModel);
+
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
-				"Súper Héroe modificado correctamente",superHeroeModel,Tiempo.obtener());		
+				"El producto ha sido modificado correctamente",productoModel,Tiempo.obtener());
 	}
 
 	/**

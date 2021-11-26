@@ -37,12 +37,12 @@ public interface ProductoApiRestController {
 	@RequestMapping(value="producto",method = RequestMethod.POST)
 	public EntidadRespuesta<ProductoModel> crear(@RequestBody ProductoSolicitud productoSolicitud, HttpServletResponse respuesta);
 
-	@ApiOperation(value = "(En Construcción)Este método es usado para Actualizar un Producto de la lista de una compra en la web-")
+	@ApiOperation(value = "Este método es usado para Actualizar un Producto de la lista de una compra en la web-")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_MODIFICAR')")
 	@RequestMapping(value="producto",method = RequestMethod.PUT)
 	public EntidadRespuesta<ProductoModel> actualizar(@RequestBody ProductoSolicitud productoSolicitud, HttpServletResponse respuesta);
 
-	@ApiOperation(value = "(En Construcción)Este método es usado para Eliminar un Producto de la lista de una compra en la web.")
+	@ApiOperation(value = "Este método es usado para Eliminar un Producto de la lista de una compra en la web.")
 	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_ELIMINAR')")
 	@RequestMapping(value="producto/{identificacion}",method = RequestMethod.DELETE)
 	public EntidadRespuesta<ProductoModel> eliminar(@PathVariable @NotNull int identificacion,HttpServletResponse respuesta);

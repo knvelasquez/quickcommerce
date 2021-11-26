@@ -59,17 +59,17 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 
 	/**
 	 * Metodo usado para Actualizar la información
-	 * de un Súper Héroe indicado.
+	 * de un producto en una compra web.
 	 * */
 	@Override
 	public EntidadRespuesta<ProductoModel> actualizar(ProductoSolicitud productoSolicitud, HttpServletResponse respuesta) {
-		logger.info("Iniciando Actualización de Súper Héroe");
+		logger.info("Iniciando Actualización de un producto");
 		logger.debug(productoSolicitud.toString());
 
 		EntidadRespuesta<ProductoModel> resultado= productoServicio.modificar(productoSolicitud);
 		respuesta.setStatus(resultado.getEstatus());
 
-		logger.info("Fin Actualización de Súper Héroe");
+		logger.info("Fin Actualización de un producto");
 		logger.debug(resultado.toString());
 
 		return resultado;
