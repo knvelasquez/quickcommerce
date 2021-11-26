@@ -30,14 +30,14 @@ public class JwtServicioImpl implements JwtServicio {
 	public String generar(UsuarioModel usuario) {
 		String claveSecreta = "udmVsYXNxdWV6IiwibmFtZSI6";			
 		List<String> listaPrivilegio=new ArrayList<String>();
-		for(PrivilegioModel privilegio :  usuario.getPrivilegio()){					
-			listaPrivilegio.add(privilegio.getValor());
+		for(PrivilegioModel privilegio :  usuario.getPrivilege()){
+			listaPrivilegio.add(privilegio.getName_privilege());
 		}		
 		List<GrantedAuthority> privilegiosOtorgados = AuthorityUtils.commaSeparatedStringToAuthorityList(String.join(",", listaPrivilegio));			
 		String jwtToken = Jwts.builder()
 							  //.setId("@ID-JWT")
 							  .setIssuer("Super Fintech, S.A")
-							  .setSubject(usuario.getUsuario())
+							  .setSubject(usuario.getUsername())
 							  .claim("nombre", usuario.getNombre())
 							  .claim("apellido", usuario.getApellido())
 							  //.claim("identificacion", usuario.getId())

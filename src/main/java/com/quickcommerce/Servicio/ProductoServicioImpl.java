@@ -3,9 +3,12 @@
  */
 package com.quickcommerce.Servicio;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.http.HttpServletResponse;
-
 import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.config.Tiempo;
 import com.quickcommerce.model.ProductoModel;
@@ -45,9 +48,23 @@ public class ProductoServicioImpl implements ProductoServicio {
 	@Override
 	public EntidadRespuesta<ProductoModel> crear(PostProductoSolicitud postProductoSolicitud) {
 		ProductoModel productoModel=new ProductoModel();
-		productoModel.setNombre(postProductoSolicitud.getNombre());
-		productoModel.setDescripcion(postProductoSolicitud.getDescripcion());
-		productoModel.setCantidad(postProductoSolicitud.getCantidad());
+		productoModel.setName_product(postProductoSolicitud.getName_product());
+		productoModel.setCategory_product(postProductoSolicitud.getCategory_product());
+		productoModel.setPrice_product(postProductoSolicitud.getPrice_product());
+		productoModel.setCurrency_product(postProductoSolicitud.getCurrency_product());
+		productoModel.setStatus_product(postProductoSolicitud.getStatus_product());
+		productoModel.setStock_product(postProductoSolicitud.getStock_product());
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss", Locale.ENGLISH);
+		String dateInString = "2021-11-26 00:00:00";
+		Date date = null;
+		try {
+			date = formatter.parse(dateInString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		productoModel.setCreation_date_product("2021-11-26 00:00:00");
 		productoRepository.save(productoModel);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
@@ -61,10 +78,11 @@ public class ProductoServicioImpl implements ProductoServicio {
 	@Override
 	public EntidadRespuesta<ProductoModel> consultarPorId(int id) {
 		//Envia la entidad respuesta
-		return new EntidadRespuesta<ProductoModel>(
-				HttpServletResponse.SC_OK,
-				"Súper Héroe encontrado", 
-				productoRepository.findById(id),Tiempo.obtener());
+		return null;
+		//return new EntidadRespuesta<ProductoModel>(
+		//		HttpServletResponse.SC_OK,
+		//		"Súper Héroe encontrado",
+		//		productoRepository.findById(id),Tiempo.obtener());
 	}
 
 	/**
@@ -73,13 +91,14 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * */
 	@Override
 	public EntidadRespuesta<List<ProductoModel>> consultarPorNombreContenga(String nombre) {
-		//Obtiene la informacion del servicio
+		return null;
+		/*//Obtiene la informacion del servicio
 		List<ProductoModel> listaResultado= productoRepository.findByNombreContainingIgnoreCase(nombre);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<List<ProductoModel>>(
 				HttpServletResponse.SC_OK,
 				"Total Súper Héroes encontrados " + listaResultado.size(), 
-				listaResultado,Tiempo.obtener());	
+				listaResultado,Tiempo.obtener());	*/
 	}
 
 	/**
@@ -90,25 +109,36 @@ public class ProductoServicioImpl implements ProductoServicio {
 	public EntidadRespuesta<ProductoModel> modificar(PutProductoSolicitud productoSolicitud) {
 		ProductoModel productoModel=null;
 		//Valida si se ha indicado una identificacion para el usuario
-		if(productoSolicitud.getId()==0) {
+		if(productoSolicitud.getCode_product()==0) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}
 		//Obtiene la informacion del producto por medio del id indicado
-		productoModel= productoRepository.findById(1);
+		productoModel= productoRepository.findByCodeProduct(productoSolicitud.getCode_product());
+
 		if(productoModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}						
 		//Valida que la informacion obtenida para actualizar no sea null
-		if(productoSolicitud.getNombre()!=null) {
-			productoModel.setNombre(productoSolicitud.getNombre());
+		if(productoSolicitud.getName_product()!=null) {
+			productoModel.setName_product(productoSolicitud.getName_product());
 		}
-		if(productoSolicitud.getDescripcion()!=null) {
-			productoModel.setDescripcion(productoSolicitud.getDescripcion());
+		if(productoSolicitud.getCategory_product()!=null) {
+			productoModel.setCategory_product(productoSolicitud.getCategory_product());
 		}			
-		if(productoSolicitud.getCantidad()!=0) {
-			productoModel.setCantidad(productoSolicitud.getCantidad());
+		if(productoSolicitud.getPrice_product()!=0) {
+			productoModel.setPrice_product(productoSolicitud.getPrice_product());
+		}
+
+		if(productoSolicitud.getCurrency_product()!=null) {
+			productoModel.setCurrency_product(productoSolicitud.getCurrency_product());
+		}
+		if(productoSolicitud.getStatus_product()!=null) {
+			productoModel.setStatus_product(productoSolicitud.getStatus_product());
+		}
+		if(productoSolicitud.getStock_product()!=0) {
+			productoModel.setStock_product(productoSolicitud.getPrice_product());
 		}
 
 		//Ejecuta la actualizacion en la base de datos
@@ -117,6 +147,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
 				"El producto ha sido modificado correctamente",productoModel,Tiempo.obtener());
+
 	}
 
 	/**
@@ -124,8 +155,8 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * de un Súper Héroe indicado.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> eliminar(int id) {
-		ProductoModel productoModel= productoRepository.findById(id);
+	public EntidadRespuesta<ProductoModel> eliminar(int codeProduct) {
+		ProductoModel productoModel= productoRepository.findByCodeProduct(codeProduct);
 		if(productoModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"Produco no encontrado",productoModel,Tiempo.obtener());

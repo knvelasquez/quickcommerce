@@ -81,11 +81,11 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	 * de un Producto en una compra en la web.
 	 * */
 	@Override
-	public EntidadRespuesta<ProductoModel> eliminar(int id, HttpServletResponse respuesta) {
+	public EntidadRespuesta<ProductoModel> eliminar(int code_product, HttpServletResponse respuesta) {
 		logger.info("Iniciando Eliminación de un producto");
-		logger.debug(String.format("id: %s", id));
+		logger.debug(String.format("id: %s", code_product));
 
-		EntidadRespuesta<ProductoModel> resultado= productoServicio.eliminar(id);
+		EntidadRespuesta<ProductoModel> resultado= productoServicio.eliminar(code_product);
 		respuesta.setStatus(resultado.getEstatus());
 
 		logger.info("Fin Eliminación de un producto");

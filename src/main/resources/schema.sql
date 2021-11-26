@@ -1,62 +1,65 @@
 -- -----------------------------------------------------
--- Base de Datos maestrod01 ambiente Desarrollo 
--- Base de Datos maestroh01 ambiente Homologacion 
--- Base de Datos maestro01  ambiente Produccion 
+-- Base de Datos fantastic_desa ambiente Desarrollo 
+-- Base de Datos fantastic_inte ambiente Integración 
+-- Base de Datos fantastic_prod ambiente Producción 
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `maestrodb` AUTHORIZATION sa;
-CREATE SCHEMA IF NOT EXISTS `maestrodbinte` AUTHORIZATION sa;
+CREATE SCHEMA IF NOT EXISTS `fantastic_prod` AUTHORIZATION sa;
+CREATE SCHEMA IF NOT EXISTS `fantastic_inte` AUTHORIZATION sa;
 
-USE `maestrodb`;
+USE `fantastic_prod`;
 
 -- -----------------------------------------------------
--- Tabla `usuario`
+-- Tabla `users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `idusuario` INT NOT NULL AUTO_INCREMENT,
-  `usuario` VARCHAR(15) NOT NULL,
-  `contrasenia` VARCHAR(129) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `iduser` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(20) NOT NULL,
+  `signpassword` VARCHAR(129) NOT NULL,
   `nombre` VARCHAR(15) NOT NULL,
   `apellido` VARCHAR(15) NOT NULL,
-  PRIMARY KEY (`idusuario`));
+  PRIMARY KEY (`iduser`));
 
 
 -- -----------------------------------------------------
--- Tabla `privilegio`
+-- Tabla `privilege`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `privilegio` (
-  `idprivilegio` INT NOT NULL AUTO_INCREMENT,
-  `valor` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(150) NOT NULL,
-  PRIMARY KEY (`idprivilegio`));
+CREATE TABLE IF NOT EXISTS `privilege` (
+  `id_privilege` INT NOT NULL AUTO_INCREMENT,
+  `name_privilege` VARCHAR(45) NOT NULL,
+  `description_privilege` VARCHAR(150) NOT NULL,
+  PRIMARY KEY (`id_privilege`));
 
 -- -----------------------------------------------------
--- Tabla `usuario_privilegios`
+-- Tabla `users_role`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `usuario_privilegio` (
-  `usuario_idusuario` INT NOT NULL,
-  `privilegio_idprivilegio` INT NOT NULL,
-  --INDEX `fk_usuario_privilegios_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
-  --INDEX `fk_usuario_privilegios_privilegio1_idx` (`privilegio_idprivilegio` ASC) VISIBLE,
-  CONSTRAINT `fk_usuario_privilegios_usuario1`
-    FOREIGN KEY (`usuario_idusuario`)
-    REFERENCES `usuario` (`idusuario`)
+CREATE TABLE IF NOT EXISTS `users_privilege` (
+  `users_iduser` INT NOT NULL,
+  `privilege_id_privilege` INT NOT NULL,
+  CONSTRAINT `fk_users_role_username1`
+    FOREIGN KEY (`users_iduser`)
+    REFERENCES `users` (`iduser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuario_privilegios_privilegio1`
-    FOREIGN KEY (`privilegio_idprivilegio`)
-    REFERENCES `privilegio` (`idprivilegio`)
+  CONSTRAINT `fk_users_role_id_privilege1`
+    FOREIGN KEY (`privilege_id_privilege`)
+    REFERENCES `privilege` (`id_privilege`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-   CREATE INDEX `fk_usuario_privilegio_usuario_idx` ON `usuario_privilegio`(`usuario_idusuario`);
-   CREATE INDEX `fk_usuario_privilegio_privilegio1_idx` ON `usuario_privilegio` (`privilegio_idprivilegio`);
+   CREATE INDEX `fk_fk_users_role_username_idx` ON `users_privilege`(`users_iduser`);
+   CREATE INDEX `fk_users_role_privilegio1_idx` ON `users_privilege` (`privilege_id_privilege`);
 
 -- -----------------------------------------------------
--- Tabla `producto`
+-- Tabla `products`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `producto` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
-  `cantidad` INT,
-  PRIMARY KEY (`id`));
+CREATE TABLE IF NOT EXISTS `products` (
+  `codeproduct` INT NOT NULL AUTO_INCREMENT,
+  `nameproduct` VARCHAR(100) NOT NULL,
+  `categoryproduct` VARCHAR(45) NOT NULL,
+  `priceproduct` INT NOT NULL,
+  `currencyproduct` VARCHAR(5) NOT NULL,
+  `stockproduct` INT NOT NULL,
+  `statusproduct` VARCHAR(45) NOT NULL,
+  `creationdateproduct` DATETIME NOT NULL,
+  PRIMARY KEY (`codeproduct`));
+

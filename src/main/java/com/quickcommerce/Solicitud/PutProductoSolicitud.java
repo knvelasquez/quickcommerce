@@ -5,70 +5,84 @@ package com.quickcommerce.Solicitud;
 
 import com.google.gson.GsonBuilder;
 
+import java.sql.Date;
+
 /**
  * @author Kevin Velásquez
  *
  */
 public class PutProductoSolicitud {
-	private int id;
-	private String nombre;
-	private String descripcion;
-	private int cantidad;
+	private int code_product;
+	private String name_product;
+	private String category_product;
+	private int price_product;
+	private String currency_product;
+	private int stock_product;
+	private String status_product;
+	private Date creation_date_product;
 
-	/**
-	 * @return the nombre
-	 */
-	public int getId() {
-		return id;
+	public int getCode_product() {
+		return code_product;
 	}
 
-	/**
-	 * set the nombre
-	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setCode_product(int code_product) {
+		this.code_product = code_product;
 	}
 
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
+	public String getName_product() {
+		return name_product;
 	}
 
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName_product(String name_product) {
+		this.name_product = name_product;
 	}
 
-	/**
-	 * @return the identidadSecreta
-	 */
-	public String getDescripcion() {
-		return descripcion;
+	public String getCategory_product() {
+		return category_product;
 	}
 
-	/**
-	 * @param descripcion the identidadSecreta to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setCategory_product(String category_product) {
+		this.category_product = category_product;
 	}
 
-	/**
-	 * @return the lugarResidencia
-	 */
-	public int getCantidad() {
-		return cantidad;
+	public int getPrice_product() {
+		return price_product;
 	}
 
-	/**
-	 * @param cantidad the lugarResidencia to set
-	 */
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setPrice_product(int price_product) {
+		this.price_product = price_product;
+	}
+
+	public String getCurrency_product() {
+		return currency_product;
+	}
+
+	public void setCurrency_product(String currency_product) {
+		this.currency_product = currency_product;
+	}
+
+	public int getStock_product() {
+		return stock_product;
+	}
+
+	public void setStock_product(int stock_product) {
+		this.stock_product = stock_product;
+	}
+
+	public String getStatus_product() {
+		return status_product;
+	}
+
+	public void setStatus_product(String status_product) {
+		this.status_product = status_product;
+	}
+
+	public Date getCreation_date_product() {
+		return creation_date_product;
+	}
+
+	public void setCreation_date_product(Date creation_date_product) {
+		this.creation_date_product = creation_date_product;
 	}
 
 	@Override

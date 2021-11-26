@@ -99,11 +99,11 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 			//Act
 			for(ProductoModel superHeroe:listaSuperHeroe.getData()) {
 				//Establece el id en la url
-				String url= urlSuperHeroePorID.replace(":id",String.valueOf(superHeroe.getId()));
+				String url= urlSuperHeroePorID.replace(":id",String.valueOf(superHeroe.getCodeProduct()));
 				EntidadRespuesta<ProductoModel>superHeroeModel=mvc(http.GET,url,jwtToken,mapTipoSuperHeroeModel);
 				//Assert
 				assertEquals(200, superHeroeModel.getEstatus(),String.format("%s:", superHeroeModel.getDescripcion()));
-				assertNotEquals(null, superHeroeModel.getData(),String.format("%s:", superHeroe.getNombre()));
+				assertNotEquals(null, superHeroeModel.getData(),String.format("%s:", superHeroe.getName_product()));
 			}			
 		}			
 	}
@@ -142,8 +142,8 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 				
 				for(ProductoModel superHeroe:listaSuperHeroe.getData()) {
 					//Assert					
-					assertTrue(superHeroe.getNombre().toLowerCase().indexOf(busquedaNombre)!=-1,
-							String.format("%s : %s", superHeroe.getNombre(),busquedaNombre));					
+					assertTrue(superHeroe.getName_product().toLowerCase().indexOf(busquedaNombre)!=-1,
+							String.format("%s : %s", superHeroe.getName_product(),busquedaNombre));
 				}
 			}												
 		}		
@@ -193,7 +193,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 		//Indicar la identificaciones obligatorio
 		//postProductoSolicitud.setId(2);
 		//productoSolicitud.setColor("blanco");
-		postProductoSolicitud.setNombre("NuevoSuperHeroe");
+		postProductoSolicitud.setName_product("NuevoSuperHeroe");
 		
 		//Act
 		//1era integración autenticación resultado
@@ -221,7 +221,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 		//Indicar la identificaciones obligatorio
 		///postProductoSolicitud.setId(2);
 		//productoSolicitud.setColor("nuevoColor");
-		postProductoSolicitud.setNombre("NuevoSuperHeroe");
+		postProductoSolicitud.setName_product("NuevoSuperHeroe");
 		
 		//Act
 		//1era integración autenticación resultado
@@ -258,7 +258,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 			//Assert
 			assertEquals(202, superHeroeResultado.getEstatus());
 			assertNotEquals(null, superHeroeResultado.getData());
-			assertEquals(identificacion, superHeroeResultado.getData().getId());	
+			assertEquals(identificacion, superHeroeResultado.getData().getCodeProduct());
 		}								
 	}
 	

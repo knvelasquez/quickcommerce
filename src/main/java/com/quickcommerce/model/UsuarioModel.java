@@ -17,19 +17,19 @@ import javax.persistence.Table;
  * @author Kevin Velásquez
  *
  */
-@Entity(name = "Usuario")
-@Table(name = "USUARIO")
+@Entity(name = "Users")
+@Table(name = "USERS")
 public class UsuarioModel {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idusuario", nullable = false)
-	private int id;
+	@Column(name = "iduser", nullable = false)
+	private int id_user;
 	
-	@Column(name = "usuario", nullable = false)
-	private String usuario;
+	@Column(name = "username", nullable = false)
+	private String username;
 	
-	@Column(name = "contrasenia", nullable = false)
-	private String contrasenia;
+	@Column(name = "signpassword", nullable = false)
+	private String sign_password;
 	
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
@@ -39,7 +39,7 @@ public class UsuarioModel {
 	
 	//@ManyToMany()
 	@OneToMany(fetch = FetchType.EAGER)
-	private List<PrivilegioModel> privilegio;
+	private List<PrivilegioModel> privilege;
 
 	/**
 	 * 
@@ -48,81 +48,81 @@ public class UsuarioModel {
 	}
 
 	/**
-	 * @param usuario
+	 * @param username
 	 */
-	public UsuarioModel(String usuario) {
-		this.usuario = usuario;
+	public UsuarioModel(String username) {
+		this.username = username;
 	}
 
 	/**
-	 * @param usuario
-	 * @param contrasenia
+	 * @param username
+	 * @param sign_password
 	 */
-	public UsuarioModel(String usuario, String contrasenia) {
-		this.usuario = usuario;
-		this.contrasenia = contrasenia;
+	public UsuarioModel(String username, String sign_password) {
+		this.username = username;
+		this.sign_password = sign_password;
 	}
 
 	/**
-	 * @param usuario
-	 * @param contrasenia
-	 * @param prvilegios
+	 * @param username
+	 * @param sign_password
+	 * @param privilege
 	 */
-	public UsuarioModel(String usuario, String contrasenia, List<PrivilegioModel> privilegios) {
-		this.usuario = usuario;
-		this.contrasenia = contrasenia;
-		this.privilegio = privilegios;
+	public UsuarioModel(String username, String sign_password, List<PrivilegioModel> privilege) {
+		this.username = username;
+		this.sign_password = sign_password;
+		this.privilege = privilege;
 	}
 	
 	/**
-	 * @param usuario
-	 * @param privilegios
+	 * @param username
+	 * @param privilege
 	 */
-	public UsuarioModel(String usuario, List<PrivilegioModel> privilegios) {
-		this.usuario = usuario;
-		this.privilegio = privilegios;
+	public UsuarioModel(String username, List<PrivilegioModel> privilege) {
+		this.username = username;
+		this.privilege = privilege;
 	}
 
 	/**
 	 * @return the usuario
 	 */
-	public String getUsuario() {
-		return usuario;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * @param usuario the usuario to set
+	 * @param username the usuario to set
 	 */
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
-	 * @return the contrasenia
+	 * @return the sign_password
 	 */
-	public String getContrasenia() {
-		return contrasenia;
+	public String getSign_password() {
+		return sign_password;
 	}
 
 	/**
-	 * @param contrasenia the contrasenia to set
+	 * @param sign_password the contrasenia to set
 	 */
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
+	public void setSign_password(String sign_password) {
+		this.sign_password = sign_password;
 	}	
 
 	/**
 	 * @return the id
 	 */
-	public int getId() {
-		return id;
+	public int getId_user() {
+		return id_user;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setId_user(int id) {
+		this.id_user = id;
 	}
 
 	/**
@@ -156,15 +156,15 @@ public class UsuarioModel {
 	/**
 	 * @return the privilegio
 	 */
-	public List<PrivilegioModel> getPrivilegio() {
-		return privilegio;
+	public List<PrivilegioModel> getPrivilege() {
+		return privilege;
 	}
 
 	/**
-	 * @param privilegio the privilegio to set
+	 * @param privilege the privilegio to set
 	 */
-	public void setPrivilegio(List<PrivilegioModel> privilegio) {
-		this.privilegio = privilegio;
+	public void setPrivilege(List<PrivilegioModel> privilege) {
+		this.privilege = privilege;
 	}	
 	
 }

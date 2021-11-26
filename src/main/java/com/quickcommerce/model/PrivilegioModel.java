@@ -14,55 +14,41 @@ import javax.persistence.Table;
  * @author Kevin Velásquez
  *
  */
-@Entity(name = "Privilegio")
-@Table(name = "PRIVILEGIO")
+@Entity(name = "Privilege")
+@Table(name = "privilege")
 public class PrivilegioModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idprivilegio", nullable = false)
-	private int id;
+	@Column(name = "id_privilege", nullable = false)
+	private int id_privilege;
 	
-	@Column(name = "valor", nullable = false)
-	private String valor;
+	@Column(name = "name_privilege", nullable = false)
+	private String name_privilege;
 	
-	@Column(name = "descripcion", nullable = false)
-	private String descripcion;
-	    
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
+	@Column(name = "description_privilege", nullable = false)
+	private String description_privilege;
+
+	public int getId_privilege() {
+		return id_privilege;
 	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
+
+	public void setId_privilege(int id_privilege) {
+		this.id_privilege = id_privilege;
 	}
-	/**
-	 * @return the valor
-	 */
-	public String getValor() {
-		return valor;
+
+	public String getName_privilege() {
+		return name_privilege;
 	}
-	/**
-	 * @param valor the valor to set
-	 */
-	public void setValor(String valor) {
-		this.valor = valor;
+
+	public void setName_privilege(String name_privilege) {
+		this.name_privilege = name_privilege;
 	}
-	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
+
+	public String getDescription_privilege() {
+		return description_privilege;
 	}
-	/**
-	 * @param descripcion the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}	
-	
+
+	public void setDescription_privilege(String description_privilege) {
+		this.description_privilege = description_privilege;
+	}
 }

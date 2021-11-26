@@ -18,7 +18,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.quickcommerce.ApiRestController.ProductoApiRestControllerImpl;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
-import com.quickcommerce.Solicitud.PostProductoSolicitud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -99,8 +98,8 @@ public class SuperHeroeTest {
 
 		// Assert
 		assertTrue(listaResultado.size() > 0);
-		assertEquals("Bat Man", listaResultado.get(0).getNombre());
-		assertEquals("Super Man", listaResultado.get(1).getNombre());
+		assertEquals("Bat Man", listaResultado.get(0).getName_product());
+		assertEquals("Super Man", listaResultado.get(1).getName_product());
 	}
 
 	@Test
@@ -208,8 +207,8 @@ public class SuperHeroeTest {
 		// Arrange
 		PutProductoSolicitud prodcuto = new PutProductoSolicitud();
 		//superHeroe.setId(1);
-		prodcuto.setNombre("nuevo-nombre");
-		prodcuto.setDescripcion("nueva-identidad");
+		prodcuto.setName_product("nuevo-nombre");
+		prodcuto.setCategory_product("nueva-identidad");
 
 		EntidadRespuesta<ProductoModel>entidadRespuesta=new EntidadRespuesta<ProductoModel>(201,null,null,Tiempo.obtener());
 		when(superHeroeApi.actualizar(prodcuto,respuesta)).thenReturn(entidadRespuesta);
