@@ -35,7 +35,7 @@ public interface ProductoApiRestController {
 	public EntidadProductRespuesta<List<ProductoModel>> consultarTodos();
 
 	@ApiOperation(value = "Este método es usado para Agregar un nuevo Producto a la lista de una compra en la web.")
-	//@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_SUPERHEROE_CONSULTARTODOS')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value="products",method = RequestMethod.POST)
 	public EntidadRespuesta<ProductoModel> crear(@RequestBody PostProductoSolicitud postProductoSolicitud, HttpServletResponse respuesta);
 

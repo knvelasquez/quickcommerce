@@ -3,13 +3,10 @@
  */
 package com.quickcommerce.Servicio;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import javax.servlet.http.HttpServletResponse;
-
 import com.quickcommerce.Respuesta.EntidadProductRespuesta;
 import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.config.Tiempo;
@@ -54,19 +51,14 @@ public class ProductoServicioImpl implements ProductoServicio {
 		productoModel.setCategoryProduct(postProductoSolicitud.getCategory_product());
 		productoModel.setPriceProduct(postProductoSolicitud.getPrice_product());
 		productoModel.setCurrency(postProductoSolicitud.getCurrency_product());
-		productoModel.setStatusProduct(postProductoSolicitud.getStatus_product());
 		productoModel.setStockProduct(postProductoSolicitud.getStock_product());
+		productoModel.setStatusProduct("Active");
 
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss", Locale.ENGLISH);
-		String dateInString = "2021-11-26 00:00:00";
-		Date date = null;
-		try {
-			date = formatter.parse(dateInString);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSS");
+		LocalDateTime now = LocalDateTime.now();
+		String dateInString = formatter.format(now);
 
-		productoModel.setCreationProductDate("2021-11-26 00:00:00");
+		productoModel.setCreationProductDate(dateInString);
 		productoRepository.save(productoModel);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,

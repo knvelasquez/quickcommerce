@@ -17,7 +17,6 @@ public class PostProductoSolicitud {
 	private int price_product;
 	private String currency_product;
 	private int stock_product;
-	private String status_product;
 	private Date creation_date_product;
 
 	public String getName_product() {
@@ -58,14 +57,6 @@ public class PostProductoSolicitud {
 
 	public void setStock_product(int stock_product) {
 		this.stock_product = stock_product;
-	}
-
-	public String getStatus_product() {
-		return status_product;
-	}
-
-	public void setStatus_product(String status_product) {
-		this.status_product = status_product;
 	}
 
 	public Date getCreation_date_product() {

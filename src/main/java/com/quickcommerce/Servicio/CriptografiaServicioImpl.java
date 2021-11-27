@@ -30,10 +30,11 @@ public class CriptografiaServicioImpl implements CriptografiaServicio {
 			return new EntidadRespuesta<String>(HttpServletResponse.SC_OK,null,CriptografiaPBKDF2.cifrar(valor),Tiempo.obtener());			 
 		} catch (NoSuchAlgorithmException  excepcion) {
 			//Envia el detalle de la exepcion a la clase global manejadora
-			return new ExceptionGlobalHandler().noSuchAlgorithmException(excepcion).getBody();
+			//return new ExceptionGlobalHandler().noSuchAlgorithmException(excepcion).getBody();
 		}catch(InvalidKeySpecException excepcion) {
 			//Envia el detalle de la exepcion a la clase global manejadora
-			return new ExceptionGlobalHandler().invalidKeySpecException(excepcion).getBody();
+			//return new ExceptionGlobalHandler().invalidKeySpecException(excepcion).getBody();
 		}
+		return null;
 	}	
 }

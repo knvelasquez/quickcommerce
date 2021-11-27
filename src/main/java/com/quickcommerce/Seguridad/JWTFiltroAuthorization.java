@@ -10,6 +10,8 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.quickcommerce.Respuesta.EntidadErrorRespuesta;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -59,36 +61,46 @@ public class JWTFiltroAuthorization extends OncePerRequestFilter {
 			}
 			cadenaDeFiltros.doFilter(solicitud, respuesta);
 		} catch (ExpiredJwtException excepcion) {
-			this.estableceEntidadRespuesta(respuesta,
+			this.eestableceEntidadRespuesta(respuesta,
 					new ExceptionGlobalHandler().expiredJwtException((ExpiredJwtException) excepcion));
 			return;
 		} catch (MalformedJwtException excepcion) {
-			this.estableceEntidadRespuesta(respuesta, new ExceptionGlobalHandler().malFormedException(excepcion));
+			this.eestableceEntidadRespuesta(respuesta, new ExceptionGlobalHandler().malFormedException(excepcion));
 			return;
 		} catch (EncabezadoNoEcontradoExeption excepcion) {
-			this.estableceEntidadRespuesta(respuesta,
+			this.eestableceEntidadRespuesta(respuesta,
 					new ExceptionGlobalHandler().encabezadoNoEncontradoException(excepcion));
 			return;
 		} catch (PrivilegioNoEcontradoException excepcion) {			
-			this.estableceEntidadRespuesta(respuesta,
+			this.eestableceEntidadRespuesta(respuesta,
 					new ExceptionGlobalHandler().privilegioNoEncontradoException(excepcion));
 			return;
 		}
 	}
-	
+
 	/**
 	 * Metodo para establecer el contenido de la respuesta
-	 * 
+	 *
 	 */
 	protected void estableceEntidadRespuesta(HttpServletResponse respuesta,
-			ResponseEntity<EntidadRespuesta<String>> entidadRespuesta) throws IOException {
+											 ResponseEntity<EntidadRespuesta<String>> entidadRespuesta) throws IOException {
 		//Establece el content type con el formato json
 		respuesta.setHeader("Content-Type", "application/json");
 		respuesta.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-		//envia la respuesta				
+		//envia la respuesta
 		respuesta.getOutputStream().write(new ObjectMapper().writeValueAsString(entidadRespuesta.getBody()).getBytes());
 	}
-	
+
+	protected void eestableceEntidadRespuesta(HttpServletResponse respuesta,
+											 ResponseEntity<EntidadErrorRespuesta> entidadRespuesta) throws IOException {
+		//Establece el content type con el formato json
+		respuesta.setHeader("Content-Type", "application/json");
+		respuesta.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		//envia la respuesta
+		respuesta.getOutputStream().write(new ObjectMapper().writeValueAsString(entidadRespuesta.getBody()).getBytes());
+	}
+
+
 	/**
 	 * Metodo para autenticarnos dentro del flujo de Spring
 	 * 

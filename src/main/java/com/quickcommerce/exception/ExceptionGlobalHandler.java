@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import javax.servlet.http.HttpServletResponse;
 
+import com.quickcommerce.Respuesta.EntidadErrorRespuesta;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
 import com.quickcommerce.config.Tiempo;
 import org.springframework.http.HttpStatus;
@@ -29,11 +30,10 @@ public class ExceptionGlobalHandler {
 	 * Método Para Manejar Excepciones En tiempo de Ejecucion
 	 * */
 	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<EntidadRespuesta<String>> runtimeException(RuntimeException excepcion) {
+	public ResponseEntity<EntidadErrorRespuesta> runtimeException(RuntimeException excepcion) {
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-											  excepcion.getMessage(),null,
-											  Tiempo.obtener()), HttpStatus.INTERNAL_SERVER_ERROR);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+											  excepcion.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	/**
@@ -41,11 +41,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<EntidadRespuesta<String>> exception(Exception excepcion) {
+	public ResponseEntity<EntidadErrorRespuesta> exception(Exception excepcion) {
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-				    excepcion.getMessage(),null,
-					Tiempo.obtener()), HttpStatus.INTERNAL_SERVER_ERROR);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+				    excepcion.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}	
 	
 	/**
@@ -53,11 +52,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<EntidadRespuesta<String>> accessDeniedException(AccessDeniedException excepcion) {
+	public ResponseEntity<EntidadErrorRespuesta> accessDeniedException(AccessDeniedException excepcion) {
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_UNAUTHORIZED,
-						"Acceso denegado, Favor contactar con el administrador",null,
-						Tiempo.obtener()), HttpStatus.UNAUTHORIZED);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_UNAUTHORIZED,
+						"Acceso denegado, Favor contactar con el administrador"), HttpStatus.UNAUTHORIZED);
 	}
 	
 	/**
@@ -65,11 +63,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(ExpiredJwtException.class)
-	public  ResponseEntity<EntidadRespuesta<String>> expiredJwtException(ExpiredJwtException excepcion){
+	public  ResponseEntity<EntidadErrorRespuesta> expiredJwtException(ExpiredJwtException excepcion){
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_UNAUTHORIZED,
-					"El jwt Token ha expirado, Usted debe autenticarse para generar uno nuevo.",null,
-					Tiempo.obtener()), HttpStatus.UNAUTHORIZED);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_UNAUTHORIZED,
+					"El jwt Token ha expirado, Usted debe autenticarse para generar uno nuevo."), HttpStatus.UNAUTHORIZED);
 	}
 	
 	/**
@@ -77,11 +74,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(MalformedJwtException.class)
-	public ResponseEntity<EntidadRespuesta<String>> malFormedException(MalformedJwtException excepcion){
+	public ResponseEntity<EntidadErrorRespuesta> malFormedException(MalformedJwtException excepcion){
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_UNAUTHORIZED,
-					"La cadena JWT está mal formada, revisar que contenga la longitud y la cantidad de carácteres adecuada.",null,
-					Tiempo.obtener()), HttpStatus.UNAUTHORIZED);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_UNAUTHORIZED,
+					"La cadena JWT está mal formada, revisar que contenga la longitud y la cantidad de carácteres adecuada."), HttpStatus.UNAUTHORIZED);
 	}
 	
 	/**
@@ -89,11 +85,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(EncabezadoNoEcontradoExeption.class)
-	public ResponseEntity<EntidadRespuesta<String>> encabezadoNoEncontradoException(EncabezadoNoEcontradoExeption excepcion){
+	public ResponseEntity<EntidadErrorRespuesta> encabezadoNoEncontradoException(EncabezadoNoEcontradoExeption excepcion){
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_UNAUTHORIZED,
-					excepcion.getMessage(),null,
-					Tiempo.obtener()), HttpStatus.UNAUTHORIZED);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_UNAUTHORIZED,
+					excepcion.getMessage()), HttpStatus.UNAUTHORIZED);
 	}
 	
 	/**
@@ -101,11 +96,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(PrivilegioNoEcontradoException.class)
-	public ResponseEntity<EntidadRespuesta<String>> privilegioNoEncontradoException(PrivilegioNoEcontradoException excepcion){
+	public ResponseEntity<EntidadErrorRespuesta> privilegioNoEncontradoException(PrivilegioNoEcontradoException excepcion){
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_UNAUTHORIZED,
-					excepcion.getMessage(),null,
-					Tiempo.obtener()), HttpStatus.UNAUTHORIZED);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_UNAUTHORIZED,
+					excepcion.getMessage()), HttpStatus.UNAUTHORIZED);
 	}
 	
 	/**
@@ -113,11 +107,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(NoSuchAlgorithmException.class)
-	public ResponseEntity<EntidadRespuesta<String>> noSuchAlgorithmException(NoSuchAlgorithmException excepcion){
+	public ResponseEntity<EntidadErrorRespuesta> noSuchAlgorithmException(NoSuchAlgorithmException excepcion){
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-					excepcion.getMessage(),null,
-					Tiempo.obtener()), HttpStatus.INTERNAL_SERVER_ERROR);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+					excepcion.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	/**
@@ -125,11 +118,10 @@ public class ExceptionGlobalHandler {
 	 * 
 	 * */
 	@ExceptionHandler(InvalidKeySpecException.class)
-	public ResponseEntity<EntidadRespuesta<String>> invalidKeySpecException(InvalidKeySpecException excepcion){
+	public ResponseEntity<EntidadErrorRespuesta> invalidKeySpecException(InvalidKeySpecException excepcion){
 		return new ResponseEntity<>(
-				new EntidadRespuesta<String>(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-					excepcion.getMessage(),null,
-					Tiempo.obtener()), HttpStatus.INTERNAL_SERVER_ERROR);
+				new EntidadErrorRespuesta(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+					excepcion.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 		
 }
