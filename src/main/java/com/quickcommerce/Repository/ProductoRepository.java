@@ -26,5 +26,11 @@ public interface ProductoRepository extends JpaRepository<ProductoModel,Long>{
 	 * 
 	 * */
 	//List<ProductoModel> findByNombreContainingIgnoreCase(String nombre);
+
+	/**
+	 *
+	 *
+	 */
+	List<ProductoModel> findByStatusProduct(String statusProduct);
 	
 }

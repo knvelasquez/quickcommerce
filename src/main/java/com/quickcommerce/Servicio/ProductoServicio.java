@@ -5,6 +5,7 @@ package com.quickcommerce.Servicio;
 
 import java.util.List;
 
+import com.quickcommerce.Respuesta.EntidadProductRespuesta;
 import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.model.ProductoModel;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
@@ -20,7 +21,7 @@ public interface ProductoServicio {
 	 * Metodo para Obtener una lista con información
 	 * de todos los Súper Héroes encontrados.
 	 * */
-	public EntidadRespuesta<List<ProductoModel>> consultarTodos();
+	public EntidadProductRespuesta<List<ProductoModel>> consultarTodos();
 
 	/**
 	 * Metodo usado para Obtener información de cada Súper Héroe

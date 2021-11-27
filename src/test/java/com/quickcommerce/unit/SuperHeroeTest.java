@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.quickcommerce.Respuesta.EntidadProductRespuesta;
 import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.config.Tiempo;
 import com.quickcommerce.model.ProductoModel;
@@ -88,18 +89,18 @@ public class SuperHeroeTest {
 		listaSuperHeroes.add(thorMock);
 		listaSuperHeroes.add(hulkMock);
 
-		EntidadRespuesta<List<ProductoModel>> entidadRespuesta=new EntidadRespuesta<List<ProductoModel>>(200,null,null, Tiempo.obtener());
-		entidadRespuesta.setData(listaSuperHeroes);
+		EntidadProductRespuesta<List<ProductoModel>> entidadRespuesta=new EntidadProductRespuesta<List<ProductoModel>>(null,0);
+		entidadRespuesta.setProducts(listaSuperHeroes);
 		
 		when(superHeroeApi.consultarTodos()).thenReturn(entidadRespuesta);
 
 		// Act
-		List<ProductoModel> listaResultado = superHeroeApi.consultarTodos().getData();
+		List<ProductoModel> listaResultado = superHeroeApi.consultarTodos().getProducts();
 
 		// Assert
 		assertTrue(listaResultado.size() > 0);
-		assertEquals("Bat Man", listaResultado.get(0).getName_product());
-		assertEquals("Super Man", listaResultado.get(1).getName_product());
+		assertEquals("Bat Man", listaResultado.get(0).getNameProduct());
+		assertEquals("Super Man", listaResultado.get(1).getNameProduct());
 	}
 
 	@Test
@@ -107,11 +108,11 @@ public class SuperHeroeTest {
 	public void consultarTodosObtieneListaVaciaSinInformacion() {
 		// Arrange
 		List<ProductoModel> listaSuperHeroes = new ArrayList<ProductoModel>();
-		EntidadRespuesta<List<ProductoModel>> entidadRespuesta=new EntidadRespuesta<List<ProductoModel>>(200,null,listaSuperHeroes,Tiempo.obtener());
+		EntidadProductRespuesta<List<ProductoModel>> entidadRespuesta=new EntidadProductRespuesta<List<ProductoModel>>(null,0);
 		when(superHeroeApi.consultarTodos()).thenReturn(entidadRespuesta);
 
 		// Act
-		List<ProductoModel> listaResultado = superHeroeApi.consultarTodos().getData();
+		List<ProductoModel> listaResultado = superHeroeApi.consultarTodos().getProducts();
 
 		// Assert
 		assertEquals(Collections.EMPTY_LIST, listaResultado);

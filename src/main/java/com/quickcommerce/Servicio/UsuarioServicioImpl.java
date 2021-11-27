@@ -45,7 +45,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 			return contraseniaCifrada;
 		}
 		//Obtiene la informacion del usuario
-		UsuarioModel usuarioModel=null;//usuarioRepository.findByUsernameAndSignpassword(usuario.getUsuario(), contraseniaCifrada.getData());
+		UsuarioModel usuarioModel=usuarioRepository.findByUsernameAndSignpassword(usuario.getUsuario(), contraseniaCifrada.getData());
 		//Valida si el usuario resultado es diferente de null
 		if(usuarioModel!=null) {
 			//Envia la entidad respuesta

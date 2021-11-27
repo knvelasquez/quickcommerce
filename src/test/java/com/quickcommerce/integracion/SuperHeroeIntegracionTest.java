@@ -103,7 +103,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 				EntidadRespuesta<ProductoModel>superHeroeModel=mvc(http.GET,url,jwtToken,mapTipoSuperHeroeModel);
 				//Assert
 				assertEquals(200, superHeroeModel.getEstatus(),String.format("%s:", superHeroeModel.getDescripcion()));
-				assertNotEquals(null, superHeroeModel.getData(),String.format("%s:", superHeroe.getName_product()));
+				assertNotEquals(null, superHeroeModel.getData(),String.format("%s:", superHeroe.getNameProduct()));
 			}			
 		}			
 	}
@@ -142,8 +142,8 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 				
 				for(ProductoModel superHeroe:listaSuperHeroe.getData()) {
 					//Assert					
-					assertTrue(superHeroe.getName_product().toLowerCase().indexOf(busquedaNombre)!=-1,
-							String.format("%s : %s", superHeroe.getName_product(),busquedaNombre));
+					assertTrue(superHeroe.getNameProduct().toLowerCase().indexOf(busquedaNombre)!=-1,
+							String.format("%s : %s", superHeroe.getNameProduct(),busquedaNombre));
 				}
 			}												
 		}		

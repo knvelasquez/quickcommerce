@@ -6,6 +6,7 @@ package com.quickcommerce.ApiRestController;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import com.quickcommerce.AnotacionPersonalizada.TotalTiempoEjecucion;
+import com.quickcommerce.Respuesta.EntidadProductRespuesta;
 import com.quickcommerce.Respuesta.EntidadRespuesta;
 import com.quickcommerce.Servicio.ProductoServicio;
 import com.quickcommerce.Solicitud.PostProductoSolicitud;
@@ -39,11 +40,11 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 	 * */
 	@TotalTiempoEjecucion
 	@Override
-	public EntidadRespuesta<List<ProductoModel>> consultarTodos() {
+	public EntidadProductRespuesta<List<ProductoModel>> consultarTodos() {
 		logger.info("Iniciando Consulta de Todos los productos");
 		//logger.debug("@CLAIMS");
-		
-		EntidadRespuesta<List<ProductoModel>> listaProducto= productoServicio.consultarTodos();
+
+		EntidadProductRespuesta<List<ProductoModel>> listaProducto= productoServicio.consultarTodos();
 		
 		logger.info("Fin Consulta de Todos de los productos");
 		logger.debug(listaProducto.toString());

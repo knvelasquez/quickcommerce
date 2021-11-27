@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.servlet.http.HttpServletResponse;
+
+import com.quickcommerce.Respuesta.EntidadProductRespuesta;
 import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.config.Tiempo;
 import com.quickcommerce.model.ProductoModel;
@@ -32,13 +34,13 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * de todos los Productos de una compra en la web.
 	 * */
 	@Override
-	public EntidadRespuesta<List<ProductoModel>> consultarTodos() {
-		List<ProductoModel> listaResultado= productoRepository.findAll();
+	public EntidadProductRespuesta<List<ProductoModel>> consultarTodos() {
+		List<ProductoModel> listaResultado= productoRepository.findByStatusProduct("Active");
 		//Envia la entidad respuesta
-		return new EntidadRespuesta<List<ProductoModel>>(
-				HttpServletResponse.SC_OK,
-				"Total de Productos encontrados "+ listaResultado.size(),
-				listaResultado, Tiempo.obtener());
+		return new EntidadProductRespuesta<List<ProductoModel>>(
+				listaResultado,
+				listaResultado.size()
+		);
 	}
 
 	/**
@@ -48,12 +50,12 @@ public class ProductoServicioImpl implements ProductoServicio {
 	@Override
 	public EntidadRespuesta<ProductoModel> crear(PostProductoSolicitud postProductoSolicitud) {
 		ProductoModel productoModel=new ProductoModel();
-		productoModel.setName_product(postProductoSolicitud.getName_product());
-		productoModel.setCategory_product(postProductoSolicitud.getCategory_product());
-		productoModel.setPrice_product(postProductoSolicitud.getPrice_product());
-		productoModel.setCurrency_product(postProductoSolicitud.getCurrency_product());
-		productoModel.setStatus_product(postProductoSolicitud.getStatus_product());
-		productoModel.setStock_product(postProductoSolicitud.getStock_product());
+		productoModel.setNameProduct(postProductoSolicitud.getName_product());
+		productoModel.setCategoryProduct(postProductoSolicitud.getCategory_product());
+		productoModel.setPriceProduct(postProductoSolicitud.getPrice_product());
+		productoModel.setCurrency(postProductoSolicitud.getCurrency_product());
+		productoModel.setStatusProduct(postProductoSolicitud.getStatus_product());
+		productoModel.setStockProduct(postProductoSolicitud.getStock_product());
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss", Locale.ENGLISH);
 		String dateInString = "2021-11-26 00:00:00";
@@ -64,7 +66,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 			e.printStackTrace();
 		}
 
-		productoModel.setCreation_date_product("2021-11-26 00:00:00");
+		productoModel.setCreationProductDate("2021-11-26 00:00:00");
 		productoRepository.save(productoModel);
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
@@ -122,23 +124,23 @@ public class ProductoServicioImpl implements ProductoServicio {
 		}						
 		//Valida que la informacion obtenida para actualizar no sea null
 		if(productoSolicitud.getName_product()!=null) {
-			productoModel.setName_product(productoSolicitud.getName_product());
+			productoModel.setNameProduct(productoSolicitud.getName_product());
 		}
 		if(productoSolicitud.getCategory_product()!=null) {
-			productoModel.setCategory_product(productoSolicitud.getCategory_product());
+			productoModel.setCategoryProduct(productoSolicitud.getCategory_product());
 		}			
 		if(productoSolicitud.getPrice_product()!=0) {
-			productoModel.setPrice_product(productoSolicitud.getPrice_product());
+			productoModel.setPriceProduct(productoSolicitud.getPrice_product());
 		}
 
 		if(productoSolicitud.getCurrency_product()!=null) {
-			productoModel.setCurrency_product(productoSolicitud.getCurrency_product());
+			productoModel.setCurrency(productoSolicitud.getCurrency_product());
 		}
 		if(productoSolicitud.getStatus_product()!=null) {
-			productoModel.setStatus_product(productoSolicitud.getStatus_product());
+			productoModel.setStatusProduct(productoSolicitud.getStatus_product());
 		}
 		if(productoSolicitud.getStock_product()!=0) {
-			productoModel.setStock_product(productoSolicitud.getPrice_product());
+			productoModel.setStockProduct(productoSolicitud.getPrice_product());
 		}
 
 		//Ejecuta la actualizacion en la base de datos

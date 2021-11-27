@@ -29,7 +29,7 @@ public class UsuarioModel {
 	private String username;
 	
 	@Column(name = "signpassword", nullable = false)
-	private String sign_password;
+	private String signpassword;
 	
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
@@ -60,7 +60,7 @@ public class UsuarioModel {
 	 */
 	public UsuarioModel(String username, String sign_password) {
 		this.username = username;
-		this.sign_password = sign_password;
+		this.signpassword = sign_password;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class UsuarioModel {
 	 */
 	public UsuarioModel(String username, String sign_password, List<PrivilegioModel> privilege) {
 		this.username = username;
-		this.sign_password = sign_password;
+		this.signpassword = sign_password;
 		this.privilege = privilege;
 	}
 	
@@ -100,15 +100,15 @@ public class UsuarioModel {
 	/**
 	 * @return the sign_password
 	 */
-	public String getSign_password() {
-		return sign_password;
+	public String getSignpassword() {
+		return signpassword;
 	}
 
 	/**
 	 * @param sign_password the contrasenia to set
 	 */
-	public void setSign_password(String sign_password) {
-		this.sign_password = sign_password;
+	public void setSignpassword(String sign_password) {
+		this.signpassword = sign_password;
 	}	
 
 	/**

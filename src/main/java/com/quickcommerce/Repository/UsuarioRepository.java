@@ -22,5 +22,5 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 	 * Este metodo es usado para obtener un usuario por medio del usuario y contrasenia
 	 * 
 	 * */
-	//public UsuarioModel findByUsernameAndSignpassword(String username, String sign_password);
+	public UsuarioModel findByUsernameAndSignpassword(String username, String sign_password);
 }

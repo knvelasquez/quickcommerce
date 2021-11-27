@@ -21,34 +21,34 @@ public class ProductoModel {
 	private int codeProduct;
 
 	@Column(name = "nameproduct", nullable = false)
-	private String name_product;
+	private String nameProduct;
 
 	@Column(name = "categoryproduct", nullable = false)
-	private String category_product;
+	private String categoryProduct;
 
 	@Column(name = "priceproduct", nullable = true)
-	private int price_product;
+	private float priceProduct;
 
 	@Column(name = "currencyproduct", nullable = true)
-	private String currency_product;
+	private String currency;
 
 	@Column(name = "stockproduct", nullable = true)
-	private int stock_product;
+	private int stockProduct;
 
 	@Column(name = "statusproduct", nullable = true)
-	private String status_product;
+	private String statusProduct;
 
 	@Column(name = "creationdateproduct", nullable = true)
-	private String creation_date_product;
+	private String creationProductDate;
 
 	public ProductoModel() {
 	}
 
-	public ProductoModel(int id, String nombre, String descripcion, int cantidad) {
+	public ProductoModel(int id, String nombre, String descripcion, float priceProduct) {
 		this.codeProduct = id;
-		this.name_product = nombre;
-		this.category_product = descripcion;
-		this.price_product = cantidad;
+		this.nameProduct = nombre;
+		this.categoryProduct = descripcion;
+		this.priceProduct = priceProduct;
 	}
 
 	public int getCodeProduct() {
@@ -62,72 +62,72 @@ public class ProductoModel {
 	/**
 	 * @return the nombre
 	 */
-	public String getName_product() {
-		return name_product;
+	public String getNameProduct() {
+		return nameProduct;
 	}
 
 	/**
 	 * @param nombre the nombre to set
 	 */
-	public void setName_product(String nombre) {
-		this.name_product = nombre;
+	public void setNameProduct(String nombre) {
+		this.nameProduct = nombre;
 	}
 
 	/**
 	 * @return the identidadSecreta
 	 */
-	public String getCategory_product() {
-		return category_product;
+	public String getCategoryProduct() {
+		return categoryProduct;
 	}
 
 	/**
 	 * @param identidadSecreta the identidadSecreta to set
 	 */
-	public void setCategory_product(String identidadSecreta) {
-		this.category_product = identidadSecreta;
+	public void setCategoryProduct(String identidadSecreta) {
+		this.categoryProduct = identidadSecreta;
 	}
 
 	/**
 	 * @return the lugarResidencia
 	 */
-	public int getPrice_product() {
-		return price_product;
+	public float getPriceProduct() {
+		return priceProduct;
 	}
 
-	public void setPrice_product(int cantidad) {
-		this.price_product = cantidad;
+	public void setPriceProduct(float priceProduct) {
+		this.priceProduct = priceProduct;
 	}
 
 
-	public String getCurrency_product() {
-		return currency_product;
+	public String getCurrency() {
+		return currency;
 	}
 
-	public void setCurrency_product(String currency_product) {
-		this.currency_product = currency_product;
+	public void setCurrency(String currency_product) {
+		this.currency = currency_product;
 	}
 
-	public int getStock_product() {
-		return stock_product;
+	public int getStockProduct() {
+		return stockProduct;
 	}
 
-	public void setStock_product(int stock_product) {
-		this.stock_product = stock_product;
+	public void setStockProduct(int stock_product) {
+		this.stockProduct = stock_product;
 	}
 
-	public String getStatus_product() {
-		return status_product;
+	public String getStatusProduct() {
+		return statusProduct;
 	}
 
-	public void setStatus_product(String status_product) {
-		this.status_product = status_product;
+	public void setStatusProduct(String status_product) {
+		this.statusProduct = status_product;
 	}
 
-	public String getCreation_date_product() {
-		return creation_date_product;
+	public String getCreationProductDate() {
+		return creationProductDate;
 	}
 
-	public void setCreation_date_product(String creation_date_product) {
-		this.creation_date_product = creation_date_product;
+	public void setCreationProductDate(String creation_date_product) {
+		this.creationProductDate = creation_date_product;
 	}
 }
