@@ -4,6 +4,8 @@
 package com.quickcommerce.Solicitud;
 
 import com.google.gson.GsonBuilder;
+import com.quickcommerce.model.CurrencyEnum;
+import com.quickcommerce.model.StatusEnum;
 
 import java.sql.Date;
 
@@ -11,52 +13,55 @@ import java.sql.Date;
  * @author Kevin Velásquez
  *
  */
+
 public class PostProductoSolicitud {
-	private String name_product;
-	private String category_product;
-	private int price_product;
-	private String currency_product;
-	private int stock_product;
+	private String nameProduct;
+	private String categoryProduct;
+	private int priceProduct;
+	private CurrencyEnum currency;
+	private int stockProduct;
 	private Date creation_date_product;
+	public StatusEnum statusProduct;
+	private String markProduct;
 
-	public String getName_product() {
-		return name_product;
+	public String getNameProduct() {
+		return nameProduct;
 	}
 
-	public void setName_product(String name_product) {
-		this.name_product = name_product;
+	public void setNameProduct(String nameProduct) {
+		this.nameProduct = nameProduct;
 	}
 
-	public String getCategory_product() {
-		return category_product;
+	public String getCategoryProduct() {
+		return categoryProduct;
 	}
 
-	public void setCategory_product(String category_product) {
-		this.category_product = category_product;
+	public void setCategoryProduct(String categoryProduct) {
+		this.categoryProduct = categoryProduct;
 	}
 
-	public int getPrice_product() {
-		return price_product;
+	public int getPriceProduct() {
+		return priceProduct;
 	}
 
-	public void setPrice_product(int price_product) {
-		this.price_product = price_product;
+	public void setPriceProduct(int priceProduct) {
+		this.priceProduct = priceProduct;
 	}
 
-	public String getCurrency_product() {
-		return currency_product;
+	public CurrencyEnum getCurrency() {
+		return currency;
 	}
 
-	public void setCurrency_product(String currency_product) {
-		this.currency_product = currency_product;
+	public void setCurrency(CurrencyEnum currency) {
+		this.currency = currency;
 	}
 
-	public int getStock_product() {
-		return stock_product;
+	public int getStockProduct() {
+		return stockProduct;
 	}
 
-	public void setStock_product(int stock_product) {
-		this.stock_product = stock_product;
+	public void setStockProduct(int stockProduct) {
+		this.stockProduct = stockProduct;
 	}
 
 	public Date getCreation_date_product() {
@@ -65,6 +70,22 @@ public class PostProductoSolicitud {
 
 	public void setCreation_date_product(Date creation_date_product) {
 		this.creation_date_product = creation_date_product;
+	}
+
+	public StatusEnum getStatusProduct() {
+		return statusProduct;
+	}
+
+	public void setStatusProduct(StatusEnum statusProduct) {
+		this.statusProduct = statusProduct;
+	}
+
+	public String getMarkProduct() {
+		return markProduct;
+	}
+
+	public void setMarkProduct(String markProduct) {
+		this.markProduct = markProduct;
 	}
 
 	@Override

@@ -29,5 +29,5 @@ INSERT INTO `users_privilege` VALUES(3,3);
 -- Usuario: ASSISTANT
 INSERT INTO `users_privilege` VALUES(4,4);
 
-INSERT INTO `products` VALUES(NULL,'Arepitas','Comida Venezolana',100.01,'ARS',15,'Active','2021-11-26 15:50:08.987');
-INSERT INTO `products` VALUES(NULL,'Cafecito con Leche','Bebida Caliente',30.01,'ARS',20,'Active','2021-11-27 13:25:40.745');
+INSERT INTO `products` VALUES(NULL,'Arepitas','Comida Venezolana','DONIA TOTA',100.01,'ARS',15,'ACTIVE','2021-11-26 15:50:08.987');
+INSERT INTO `products` VALUES(NULL,'Cafecito con Leche','Bebida Caliente','MARTINEZ',30.01,'ARS',20,'ACTIVE','2021-11-27 13:25:40.745');

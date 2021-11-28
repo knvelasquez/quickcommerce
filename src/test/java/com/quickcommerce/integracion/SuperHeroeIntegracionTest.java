@@ -193,7 +193,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 		//Indicar la identificaciones obligatorio
 		//postProductoSolicitud.setId(2);
 		//productoSolicitud.setColor("blanco");
-		postProductoSolicitud.setName_product("NuevoSuperHeroe");
+		postProductoSolicitud.setNameProduct("NuevoSuperHeroe");
 		
 		//Act
 		//1era integración autenticación resultado
@@ -221,7 +221,7 @@ public class SuperHeroeIntegracionTest extends httpUtil {
 		//Indicar la identificaciones obligatorio
 		///postProductoSolicitud.setId(2);
 		//productoSolicitud.setColor("nuevoColor");
-		postProductoSolicitud.setName_product("NuevoSuperHeroe");
+		postProductoSolicitud.setNameProduct("NuevoSuperHeroe");
 		
 		//Act
 		//1era integración autenticación resultado

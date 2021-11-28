@@ -11,6 +11,7 @@ import com.quickcommerce.Respuesta.EntidadProductRespuesta;
 import com.quickcommerce.Solicitud.PutProductoSolicitud;
 import com.quickcommerce.config.Tiempo;
 import com.quickcommerce.model.ProductoModel;
+import com.quickcommerce.model.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.quickcommerce.Repository.ProductoRepository;
@@ -32,7 +33,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 	 * */
 	@Override
 	public EntidadProductRespuesta<List<ProductoModel>> consultarTodos() {
-		List<ProductoModel> listaResultado= productoRepository.findByStatusProduct("Active");
+		List<ProductoModel> listaResultado= productoRepository.findByStatusProduct(StatusEnum.ACTIVE.name());
 		//Envia la entidad respuesta
 		return new EntidadProductRespuesta<List<ProductoModel>>(
 				listaResultado,
@@ -47,12 +48,13 @@ public class ProductoServicioImpl implements ProductoServicio {
 	@Override
 	public EntidadRespuesta<ProductoModel> crear(PostProductoSolicitud postProductoSolicitud) {
 		ProductoModel productoModel=new ProductoModel();
-		productoModel.setNameProduct(postProductoSolicitud.getName_product());
-		productoModel.setCategoryProduct(postProductoSolicitud.getCategory_product());
-		productoModel.setPriceProduct(postProductoSolicitud.getPrice_product());
-		productoModel.setCurrency(postProductoSolicitud.getCurrency_product());
-		productoModel.setStockProduct(postProductoSolicitud.getStock_product());
-		productoModel.setStatusProduct("Active");
+		productoModel.setNameProduct(postProductoSolicitud.getNameProduct());
+		productoModel.setCategoryProduct(postProductoSolicitud.getCategoryProduct());
+		productoModel.setMarkProduct(postProductoSolicitud.getMarkProduct());
+		productoModel.setPriceProduct(postProductoSolicitud.getPriceProduct());
+		productoModel.setCurrency(postProductoSolicitud.getCurrency().name());
+		productoModel.setStockProduct(postProductoSolicitud.getStockProduct());
+		productoModel.setStatusProduct(postProductoSolicitud.getStatusProduct().name());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSS");
 		LocalDateTime now = LocalDateTime.now();
@@ -103,37 +105,44 @@ public class ProductoServicioImpl implements ProductoServicio {
 	public EntidadRespuesta<ProductoModel> modificar(PutProductoSolicitud productoSolicitud) {
 		ProductoModel productoModel=null;
 		//Valida si se ha indicado una identificacion para el usuario
-		if(productoSolicitud.getCode_product()==0) {
+		if(productoSolicitud.getCodeProduct()==0) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}
 		//Obtiene la informacion del producto por medio del id indicado
-		productoModel= productoRepository.findByCodeProduct(productoSolicitud.getCode_product());
+		productoModel= productoRepository.findByCodeProduct(productoSolicitud.getCodeProduct());
 
 		if(productoModel==null) {
 			return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_NOT_FOUND,
 					"El producto no ha sido encontrado",productoModel,Tiempo.obtener());
 		}						
 		//Valida que la informacion obtenida para actualizar no sea null
-		if(productoSolicitud.getName_product()!=null) {
-			productoModel.setNameProduct(productoSolicitud.getName_product());
+		if(productoSolicitud.getNameProduct()!=null) {
+			productoModel.setNameProduct(productoSolicitud.getNameProduct());
 		}
-		if(productoSolicitud.getCategory_product()!=null) {
-			productoModel.setCategoryProduct(productoSolicitud.getCategory_product());
-		}			
-		if(productoSolicitud.getPrice_product()!=0) {
-			productoModel.setPriceProduct(productoSolicitud.getPrice_product());
+		if(productoSolicitud.getCategoryProduct()!=null) {
+			productoModel.setCategoryProduct(productoSolicitud.getCategoryProduct());
+		}
+		if(productoSolicitud.getMarkProduct()!=null) {
+			productoModel.setMarkProduct(productoSolicitud.getMarkProduct());
+		}
+		if(productoSolicitud.getPriceProduct()!=0) {
+			productoModel.setPriceProduct(productoSolicitud.getPriceProduct());
+		}
+		if(productoSolicitud.getCurrency()!=null) {
+			productoModel.setCurrency(productoSolicitud.getCurrency().name());
+		}
+		if(productoSolicitud.getStatusProduct()!=null) {
+			productoModel.setStatusProduct(productoSolicitud.getStatusProduct().name());
+		}
+		if(productoSolicitud.getStockProduct()!=0) {
+			productoModel.setStockProduct(productoSolicitud.getPriceProduct());
 		}
 
-		if(productoSolicitud.getCurrency_product()!=null) {
-			productoModel.setCurrency(productoSolicitud.getCurrency_product());
-		}
-		if(productoSolicitud.getStatus_product()!=null) {
-			productoModel.setStatusProduct(productoSolicitud.getStatus_product());
-		}
-		if(productoSolicitud.getStock_product()!=0) {
-			productoModel.setStockProduct(productoSolicitud.getPrice_product());
-		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSS");
+		LocalDateTime now = LocalDateTime.now();
+		String dateInString = formatter.format(now);
+		productoModel.setCreationProductDate(dateInString);
 
 		//Ejecuta la actualizacion en la base de datos
 		productoRepository.save(productoModel);

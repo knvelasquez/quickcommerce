@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `codeproduct` INT NOT NULL AUTO_INCREMENT,
   `nameproduct` VARCHAR(100) NOT NULL,
   `categoryproduct` VARCHAR(45) NOT NULL,
+  `markproduct` VARCHAR(45) NOT NULL,
   `priceproduct` FLOAT NOT NULL,
   `currencyproduct` VARCHAR(5) NOT NULL,
   `stockproduct` INT NOT NULL,

@@ -11,7 +11,7 @@ import javax.persistence.Table;
  * @author Kevin Velásquez
  *
  */
-@Entity(name = "Productd")
+@Entity(name = "Products")
 @Table(name = "PRODUCTS")
 public class ProductoModel {
 
@@ -25,6 +25,9 @@ public class ProductoModel {
 
 	@Column(name = "categoryproduct", nullable = false)
 	private String categoryProduct;
+
+	@Column(name = "markproduct", nullable = false)
+	private String markProduct;
 
 	@Column(name = "priceproduct", nullable = true)
 	private float priceProduct;
@@ -44,11 +47,16 @@ public class ProductoModel {
 	public ProductoModel() {
 	}
 
-	public ProductoModel(int id, String nombre, String descripcion, float priceProduct) {
-		this.codeProduct = id;
-		this.nameProduct = nombre;
-		this.categoryProduct = descripcion;
+	public ProductoModel(int codeProduct, String nameProduct, String categoryProduct, String markProduct, float priceProduct, String currency, int stockProduct, String statusProduct, String creationProductDate) {
+		this.codeProduct = codeProduct;
+		this.nameProduct = nameProduct;
+		this.categoryProduct = categoryProduct;
+		this.markProduct = markProduct;
 		this.priceProduct = priceProduct;
+		this.currency = currency;
+		this.stockProduct = stockProduct;
+		this.statusProduct = statusProduct;
+		this.creationProductDate = creationProductDate;
 	}
 
 	public int getCodeProduct() {
@@ -125,6 +133,14 @@ public class ProductoModel {
 
 	public String getCreationProductDate() {
 		return creationProductDate;
+	}
+
+	public String getMarkProduct() {
+		return markProduct;
+	}
+
+	public void setMarkProduct(String markProduct) {
+		this.markProduct = markProduct;
 	}
 
 	public void setCreationProductDate(String creation_date_product) {

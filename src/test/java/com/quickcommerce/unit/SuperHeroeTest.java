@@ -208,8 +208,8 @@ public class SuperHeroeTest {
 		// Arrange
 		PutProductoSolicitud prodcuto = new PutProductoSolicitud();
 		//superHeroe.setId(1);
-		prodcuto.setName_product("nuevo-nombre");
-		prodcuto.setCategory_product("nueva-identidad");
+		prodcuto.setNameProduct("nuevo-nombre");
+		prodcuto.setCategoryProduct("nueva-identidad");
 
 		EntidadRespuesta<ProductoModel>entidadRespuesta=new EntidadRespuesta<ProductoModel>(201,null,null,Tiempo.obtener());
 		when(superHeroeApi.actualizar(prodcuto,respuesta)).thenReturn(entidadRespuesta);
