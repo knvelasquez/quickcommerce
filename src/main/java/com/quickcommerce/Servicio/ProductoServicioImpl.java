@@ -34,11 +34,17 @@ public class ProductoServicioImpl implements ProductoServicio {
 	@Override
 	public EntidadProductRespuesta<List<ProductoModel>> consultarTodos() {
 		List<ProductoModel> listaResultado= productoRepository.findByStatusProduct(StatusEnum.ACTIVE.name());
-		//Envia la entidad respuesta
+		//Envia la respuesta
 		return new EntidadProductRespuesta<List<ProductoModel>>(
 				listaResultado,
 				listaResultado.size()
 		);
+	}
+
+	@Override
+	public ProductoModel consultarPorCodeProduct(int codeProduct) {
+		//Envia la respuesta
+		return productoRepository.findByCodeProduct(codeProduct);
 	}
 
 	/**
@@ -65,36 +71,6 @@ public class ProductoServicioImpl implements ProductoServicio {
 		//Envia la entidad respuesta
 		return new EntidadRespuesta<ProductoModel>(HttpServletResponse.SC_ACCEPTED,
 				"El producto ha sido agregado correctamente",productoModel,Tiempo.obtener());
-	}
-
-	/**
-	 * Metodo usado para Obtener información de cada Súper Héroe
-	 * indicado por medio de un Id.
-	 * */
-	@Override
-	public EntidadRespuesta<ProductoModel> consultarPorId(int id) {
-		//Envia la entidad respuesta
-		return null;
-		//return new EntidadRespuesta<ProductoModel>(
-		//		HttpServletResponse.SC_OK,
-		//		"Súper Héroe encontrado",
-		//		productoRepository.findById(id),Tiempo.obtener());
-	}
-
-	/**
-	 * Metodo usado para Obtener una lista con información
-	 * de todos los Súper Héroes que contengan en su nombre el valor indicado.
-	 * */
-	@Override
-	public EntidadRespuesta<List<ProductoModel>> consultarPorNombreContenga(String nombre) {
-		return null;
-		/*//Obtiene la informacion del servicio
-		List<ProductoModel> listaResultado= productoRepository.findByNombreContainingIgnoreCase(nombre);
-		//Envia la entidad respuesta
-		return new EntidadRespuesta<List<ProductoModel>>(
-				HttpServletResponse.SC_OK,
-				"Total Súper Héroes encontrados " + listaResultado.size(), 
-				listaResultado,Tiempo.obtener());	*/
 	}
 
 	/**

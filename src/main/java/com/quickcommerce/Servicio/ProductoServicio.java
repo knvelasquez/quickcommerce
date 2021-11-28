@@ -16,40 +16,36 @@ import com.quickcommerce.Solicitud.PostProductoSolicitud;
  *
  */
 public interface ProductoServicio {
-	
+
 	/**
 	 * Metodo para Obtener una lista con información
-	 * de todos los Súper Héroes encontrados.
+	 * de todos los Productos de una compra en la web.
 	 * */
 	public EntidadProductRespuesta<List<ProductoModel>> consultarTodos();
 
 	/**
-	 * Metodo usado para Obtener información de cada Súper Héroe
-	 * indicado por medio de un Id.
+	 * Metodo para Obtener informacion detalle con informacion
+	 * de un producto indicado de una compra en la web.
 	 * */
-	public EntidadRespuesta<ProductoModel> consultarPorId(int identificacion);
+	public ProductoModel consultarPorCodeProduct(int codeProduct);
 
 	/**
-	 * Metodo usado para Obtener una lista con información
-	 * de todos los Súper Héroes que contengan en su nombre el valor indicado.
-	 * */
-	public EntidadRespuesta<List<ProductoModel>> consultarPorNombreContenga(String nombre);
-	
-	/**
-	 * Metodo usado para Actualizar la información
-	 * de un Súper Héroe indicado.
-	 * */
-	public EntidadRespuesta<ProductoModel> modificar(PutProductoSolicitud productoSolicitud);
-	
-	/**
-	 * Metodo usado para Eliminar la información
-	 * de un Súper Héroe indicado.
-	 * */
-	public EntidadRespuesta<ProductoModel> eliminar(int identificacion);
-
-	/**
-	 * Metodo usado para Crear un Súper Héroe
+	 * Metodo usado para Agregar un nuevo
+	 * Producto a la lista de una compra en la web.
 	 *
 	 */
 	public EntidadRespuesta<ProductoModel> crear(PostProductoSolicitud postProductoSolicitud);
+
+	/**
+	 * Metodo usado para Actualizar la información
+	 * de un Producto de la lista de una compra en la web.
+	 * */
+	public EntidadRespuesta<ProductoModel> modificar(PutProductoSolicitud productoSolicitud);
+
+	/**
+	 * Metodo usado para Eliminar la información
+	 * de un Producto de la lista en una compra en la web.
+	 * */
+	public EntidadRespuesta<ProductoModel> eliminar(int identificacion);
+
 }

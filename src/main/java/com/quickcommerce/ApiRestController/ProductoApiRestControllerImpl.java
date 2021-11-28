@@ -51,6 +51,11 @@ public class ProductoApiRestControllerImpl implements ProductoApiRestController 
 		return listaProducto;
 	}
 
+	@Override
+	public ProductoModel consultarPorId(int code_product) {
+		return productoServicio.consultarPorCodeProduct(code_product);
+	}
+
 	/**
 	 * Metodo para Crear un producto en la lista.
 	 * */
