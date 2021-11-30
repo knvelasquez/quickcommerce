@@ -37,12 +37,12 @@ public class QuickCommerceApp {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable()
-					.addFilterAfter(new JWTFiltroAuthorization(), UsernamePasswordAuthenticationFilter.class)
-					.authorizeRequests().antMatchers(HttpMethod.POST, "/quickcommerce/usuario").permitAll()
-					 //.antMatchers(HttpMethod.GET, "/quickcommerce/**").permitAll()
-					.anyRequest().authenticated();
+				.addFilterAfter(new JWTFiltroAuthorization(), UsernamePasswordAuthenticationFilter.class)
+				.authorizeRequests().antMatchers(HttpMethod.POST, "/quickcommerce/usuario").permitAll()
+				//.antMatchers(HttpMethod.GET, "/quickcommerce/**").permitAll()
+				.anyRequest().authenticated();
 			// Para capturar la exepcion de tipo acceso denegado y enviarlo a la clase global manejadora de exepciones 
-			http.exceptionHandling().accessDeniedHandler((solicitud, respuesta, accesoDenegadoExcepcion) -> {				
+			http.exceptionHandling().accessDeniedHandler((solicitud, respuesta, accesoDenegadoExcepcion) -> {
 				respuesta.setHeader("Content-Type", "application/json");
 				respuesta.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				//Envía la Respuesta serializada
@@ -51,6 +51,7 @@ public class QuickCommerceApp {
 								new ExceptionGlobalHandler().accessDeniedException(accesoDenegadoExcepcion).getBody()).getBytes());				
 				return;
 			});
+			http.cors();
 		}
 		
 		/**

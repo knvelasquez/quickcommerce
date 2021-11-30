@@ -12,6 +12,7 @@ import com.quickcommerce.Solicitud.UsuarioSolicitud;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
@@ -20,6 +21,7 @@ import io.swagger.annotations.Api;
  * @author Kevin Velásquez
  *
  */
+@CrossOrigin(origins = "*", allowedHeaders = "*"/*,maxAge = 3600, allowCredentials = "true", methods = {RequestMethod.GET}*/)
 @RestController
 @RequestMapping("/quickcommerce")
 @Api(tags = "Usuario")
